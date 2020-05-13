@@ -13,7 +13,7 @@ So far, UncELMe contains :
 * Estimates of model variance for the ensemble. This part is in progress and contains for the moment a naive estimate for the homoskedastic non-regularized case.
 
 
-The package can be installed via pip install command.
+The package can be installed via pip : "pip install UncELMe". 
 
 * License : MIT
 
