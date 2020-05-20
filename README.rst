@@ -10,10 +10,10 @@ So far, UncELMe contains :
 
 * The ELMEnsemble class, which allows ensemble of ELMRegressor.
 
-* Estimates of model variance for the ensemble. This part is in progress and contains for the moment a naive estimate for the homoskedastic non-regularized case.
+* Estimates of model variance for the ensemble. This part is in progress and contains for the moment naive estimates for the homoskedastic and heteroskedastic non-regularized cases.
 
 
-The package can be installed via pip : "pip install UncELMe". 
+The package can be installed via pip install command.
 
 * License : MIT
 
