@@ -6,7 +6,7 @@ Python package for Uncertainty quantification of Extreme Learning Machine ensemb
 
 So far, UncELMe contains :
 
-* The ELM, ELMRidge and ELMRidgeCV classes, which is a scikit-learn compatible estimator for regression based on Extreme Learning Machine (ELM), with regularization possibility (ridge estimate).
+* The ELM, ELMRidge and ELMRidgeCV classes, which are scikit-learn compatible estimators for regression based on Extreme Learning Machine (ELM), with regularization possibility (ridge estimate).
 
 * The ELMEnsemble, ELMEnsembleRidge and ELMEnsembleRidgeCV classes, which allows ensemble of ELM, ELMRidge and ELMRidgeCV estimators.
 
