@@ -162,7 +162,7 @@ class ELM(BaseEstimator, RegressorMixin):
         return y_predict
     
     
-class ELMRidge(BaseEstimator, RegressorMixin):
+class ELMRidge(ELM, BaseEstimator, RegressorMixin):
     
     def __init__(self, n_neurons=100, alpha=1.0, activation='logistic', 
                  weight_distr='uniform', weight_scl=1.0, random_state=None):
@@ -192,71 +192,8 @@ class ELMRidge(BaseEstimator, RegressorMixin):
 
         '''
         
-        self.n_neurons = n_neurons
-        self.alpha = alpha                  #added
-        self.activation = activation
-        self.weight_distr = weight_distr
-        self.weight_scl = weight_scl
-        self.random_state = random_state
-        
-    def _H_compute(self, X):        
-        '''
-        Parameters
-        ----------
-        X : Numpy array of shape (n_samples, n_features)
-            Input data.
-
-        Returns
-        -------
-        H : Numpy matrix of shape (n_samples, n_neurons)
-            Data projected in the random feature space.
-            
-        '''    
-    
-        check_is_fitted(self, ['X_', 'y_'])
-        X = check_array(X)
-        
-        n_obs = X.shape[0]
-        X = np.matrix(X)
-        
-        Input_weight = np.matrix(self.coef_hidden_)
-        Bias = np.matrix(self.intercept_hidden_)
-        Bias_rep = Bias.repeat(n_obs, axis = 0)
-        
-        H = _Activation_function(X * Input_weight + Bias_rep,
-                                  func = self.activation)
-        
-        return H
-    
-    def _weight_draw(self):        
-        '''
-        Draw random input weights of the hidden layer.
-        
-        Parameters
-        ----------
-        None
-
-        Returns
-        -------
-        None
-            
-        '''    
-    
-        n_feat = self.X_.shape[1]
-        
-        np.random.seed(self.random_state)
-        
-        if self.weight_distr == 'uniform':
-            drawing = np.random.uniform(-self.weight_scl, self.weight_scl, 
-                                        (n_feat+1, self.n_neurons))
-        elif self.weight_distr == 'gaussian':
-            drawing = np.random.normal(0, self.weight_scl, 
-                                       (n_feat+1, self.n_neurons))
-        
-        self.coef_hidden_ = drawing[:-1,:]   # random input weights, #neurons x #features, array
-        self.intercept_hidden_ = drawing[-1,:] # random bias, #neurons, array
-        
-        return 
+        ELM.__init__(self, n_neurons, activation, weight_distr, weight_scl, random_state)
+        self.alpha = alpha                  
     
     def fit(self, X, y):
         '''
@@ -296,28 +233,8 @@ class ELMRidge(BaseEstimator, RegressorMixin):
 
         return self
     
-    def predict(self, X_predict):
-        '''
-        Parameters
-        ----------
-        X_predict : Numpy array of shape (n_samples, n_features)
-            Input data to predict.
 
-        Returns
-        -------
-        y_predict : numpy array of shape (n_samples)
-            Predicted output
-
-        ''' 
-
-        H_predict = self._H_compute(X_predict)
-        Output_weight = np.matrix(self.coef_output_).T
-        
-        y_predict = np.squeeze(np.asarray(H_predict * Output_weight))
-                
-        return y_predict
-
-class ELMRidgeCV(BaseEstimator, RegressorMixin):
+class ELMRidgeCV(ELM, BaseEstimator, RegressorMixin):
     
     def __init__(self, n_neurons=100, alphas=np.array([0.1, 1.0, 10]), activation='logistic', 
                  weight_distr='uniform', weight_scl=1.0, random_state=None):
@@ -348,75 +265,12 @@ class ELMRidgeCV(BaseEstimator, RegressorMixin):
 
         '''
         
-        self.n_neurons = n_neurons
-        self.alphas = alphas                  #added
-        self.activation = activation
-        self.weight_distr = weight_distr
-        self.weight_scl = weight_scl
-        self.random_state = random_state
-        
-    def _H_compute(self, X):        
-        '''
-        Parameters
-        ----------
-        X : Numpy array of shape (n_samples, n_features)
-            Input data.
-
-        Returns
-        -------
-        H : Numpy matrix of shape (n_samples, n_neurons)
-            Data projected in the random feature space.
-            
-        '''    
-    
-        check_is_fitted(self, ['X_', 'y_'])
-        X = check_array(X)
-        
-        n_obs = X.shape[0]
-        X = np.matrix(X)
-        
-        Input_weight = np.matrix(self.coef_hidden_)
-        Bias = np.matrix(self.intercept_hidden_)
-        Bias_rep = Bias.repeat(n_obs, axis = 0)
-        
-        H = _Activation_function(X * Input_weight + Bias_rep,
-                                  func = self.activation)
-        
-        return H
-    
-    def _weight_draw(self):        
-        '''
-        Draw random input weights of the hidden layer.
-        
-        Parameters
-        ----------
-        None
-
-        Returns
-        -------
-        None
-            
-        '''    
-    
-        n_feat = self.X_.shape[1]
-        
-        np.random.seed(self.random_state)
-        
-        if self.weight_distr == 'uniform':
-            drawing = np.random.uniform(-self.weight_scl, self.weight_scl, 
-                                        (n_feat+1, self.n_neurons))
-        elif self.weight_distr == 'gaussian':
-            drawing = np.random.normal(0, self.weight_scl, 
-                                       (n_feat+1, self.n_neurons))
-        
-        self.coef_hidden_ = drawing[:-1,:]   # random input weights, #neurons x #features, array
-        self.intercept_hidden_ = drawing[-1,:] # random bias, #neurons, array
-        
-        return 
+        ELM.__init__(self, n_neurons, activation, weight_distr, weight_scl, random_state)
+        self.alphas = alphas             
     
     def fit(self, X, y):
         '''
-        Training for ELM.
+        Training for ridge ELM, with Generalized Cross Validation
         Initialize random hidden weights and compute output weights.
         
         Parameters
@@ -464,26 +318,4 @@ class ELMRidgeCV(BaseEstimator, RegressorMixin):
         self.coef_output_ = np.array(self.H_alpha_ * y).squeeze() # neurons x #resp, array
 
         return self
-
-    
-    def predict(self, X_predict):
-        '''
-        Parameters
-        ----------
-        X_predict : Numpy array of shape (n_samples, n_features)
-            Input data to predict.
-
-        Returns
-        -------
-        y_predict : numpy array of shape (n_samples)
-            Predicted output
-
-        ''' 
-
-        H_predict = self._H_compute(X_predict)
-        Output_weight = np.matrix(self.coef_output_).T
-        
-        y_predict = np.squeeze(np.asarray(H_predict * Output_weight))
-                
-        return y_predict
 

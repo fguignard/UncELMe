@@ -5,6 +5,7 @@ Created on Mon Aug  7 18:19:23 2017
 
 @author: fguignar1
 """
+
 import numpy as np
 
 def _Activation_function(M, func = 'logistic') :
@@ -22,13 +23,13 @@ def _Activation_function(M, func = 'logistic') :
         Transformed input matrix.
 
     '''
-
+    
     if func == 'logistic' :
         M = 1/(1+ np.exp(-M))
-
+        
     elif func == 'tanh' :
         M = np.tanh(M)
-
+    
     else :               # to polish
         print ('Erreur')
         print(fg)
@@ -37,6 +38,6 @@ def _Activation_function(M, func = 'logistic') :
 def Timer(start,end):
     hours, rem = divmod(end-start, 3600)
     minutes, seconds = divmod(rem, 60)
-    print("Total elapsed time : " +
+    print("Total elapsed time : " + 
           "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds))
     return
