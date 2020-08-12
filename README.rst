@@ -10,7 +10,7 @@ So far, UncELMe contains :
 
 * The ELMEnsemble, ELMEnsembleRidge and ELMEnsembleRidgeCV classes, which allows ensemble of ELM, ELMRidge and ELMRidgeCV estimators.
 
-* Estimates of model variance for the ensemble. This part is in progress and contains for the moment naive estimates for the homoskedastic and heteroskedastic non-regularized cases.
+* Estimates of model variance for the ensemble. This part is in progress and contains homoskedastic and heteroskedastic estimates for the  non-regularized and regularized cases.
 
 
 The package can be installed via pip install command.
