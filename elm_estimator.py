@@ -97,6 +97,8 @@ class ELM(BaseEstimator, RegressorMixin):
         elif self.weight_distr == 'gaussian':
             drawing = np.random.normal(0, self.weight_scl, 
                                        (n_feat+1, self.n_neurons))
+        else :
+            raise TypeError("Only 'uniform' and 'gaussian' are available for the 'weight_distr' argument")
         
         self.coef_hidden_ = drawing[:-1,:]   # random input weights, #neurons x #features, array
         self.intercept_hidden_ = drawing[-1,:] # random bias, #neurons, array

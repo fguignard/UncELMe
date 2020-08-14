@@ -178,7 +178,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         
         return ARSS    
     
-    def _muTmu_estim(self, H_pinvs, H_predict):
+    def _muTmu_estim(self, H_pinvs, H_predict, estimate):
         '''
         Parameters
         ----------
@@ -186,6 +186,8 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
             Pseudoinverse matrices for all ELMs. (or H_alphas in the regularized case)
         H_predict : Numpy array of shape (n_predict, n_neurons, n_estimators)
             Hidden vectors at all predicted points for all ELMs.
+        estimate : string, optional
+            Estimate to use, "naive" or "bias-reduced".
 
         Returns
         -------
@@ -204,20 +206,27 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         mu = z.mean(axis=2)
     
         muTmu = np.einsum('ps, ps -> p ', mu, mu)
-        muTmu *= N/(N-1)
-        quad_terms = np.einsum('psm, psm -> p ', z, z)
-        muTmu += - quad_terms/(N*(N-1))
-        
+        if estimate == 'bias-reduced':
+            muTmu *= N/(N-1)
+            quad_terms = np.einsum('psm, psm -> p ', z, z)
+            muTmu += - quad_terms/(N*(N-1))
+        elif estimate == 'naive' :
+            None
+        else :
+            raise TypeError("Only 'bias-reduced' or 'naive' are allowed for the 'estimate' argument")
+            
         return muTmu
     
-    def homoskedastic_variance(self):
+    def homoskedastic_variance(self, estimate = 'bias-reduced'):
         '''
         Compute an homoskedastic variance estimation of the model at last predicted points.
             
         Parameters
         ----------
-        None.
-
+        estimate : string, optional
+            Estimate to use, "naive" or "bias-reduced". The "bias-reduced" estimate 
+            is highly recomended, see remark below. Default is "bias-reduced".
+        
         Returns
         -------
         var_predict : numpy array of shape (n_samples)
@@ -225,10 +234,23 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         noise_estimate : numpy.float
             Noise estimate.
             
-        Reference
+        Remarks
+        ------
+        The "naive" estimate was proposed in a proceeding of the 28th European 
+        Symposium on Artificial Neural Networks, Computational Intelligence and 
+        Machine Learning (ESANN 2020). This work motivated the paper "On Extreme 
+        Learning Machine Model Variance" in which the "bias-reduced" estimate was 
+        proposed. In particular, it was shown that the later as a lower bias and, 
+        therefore, was recommended. The "naive estimate" is still available for
+        comparison and reprodicibility purposes only.
+            
+        References
         ---------
         F. Guignard, F. Amato and M. Kanevski (in prep). On Extreme Learning 
         Machine Model Variance.        
+        
+        F. Guignard, M. Laib and M. Kanevski (in press). Model Variance for 
+        Extreme Learning Machine. 
             
         ''' 
         print("ELMEnsemble homoskedastic_variance")                       
@@ -241,7 +263,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         noise = ARSS / ddof
         
         #Compute model variance induced by noise
-        muTmu = self._muTmu_estim(H_pinvs, H_predict)
+        muTmu = self._muTmu_estim(H_pinvs, H_predict, estimate)
         var1 = noise * muTmu
         
         # Compute model variance induced by the random weights
@@ -500,24 +522,24 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         S3_app = S3_app / ((M-1) * (M-2))
         
         return S3_app    
-
-       
-    def heteroskedastic_variance(self, estimate='old', approx=False, corrected_residuals=False):
+      
+    def heteroskedastic_variance(self, estimate='S3', approx=False, corrected_residuals=False):
         '''
-        Compute a variance estimation of the model at last predicted points.
+        Compute a variance estimation at last predicted points assuming 
+        heteroskedasticity (non-constant noise variance).
             
         Parameters
         ----------
         estimate : string, optional
-            Compute the variance estimate assuming heteroskedasticity (non-constant
-            noise variance). Default is False.                          ?!?!??!?!!?
+            Estimate to use, "naive", "S1, S2" or "S3". The "S3" estimate 
+            is highly recomended, see remark below. Default is "S3".
         approx : bool, optional
             Speed up computation at the expense of a sligntly approximate variance 
             estimation. Default is 'False'.
         corrected_residuals : bool, optional
-            If True, the corrected residuals used to compute HC3 are returned as
-            noise estimates at training points. If False, the raw residuals are 
-            returned. Default is 'False'.
+            If True, the corrected residuals used to compute HC3 are squared and
+            returned as noise estimates at training points. If False, the raw 
+            residuals are used. Default is 'False'.
             
         Returns
         -------
@@ -525,80 +547,60 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
             Model variance estimation for y_predict.
         noise_estimate : numpy array of shape (n_sample_train) 
             Noise estimate at the training points.
+
+        Remarks
+        ------
+        The "naive" estimate was proposed in a proceeding of the 28th European 
+        Symposium on Artificial Neural Networks, Computational Intelligence and 
+        Machine Learning (ESANN 2020). This work motivated the paper "On Extreme 
+        Learning Machine Model Variance" in which the "S1", "S2" and "S3" estimates 
+        were proposed. In particular, it was shown empirically that "S3" as a lower 
+        bias among others and, therefore, was recommended. The "naive", "S1" and 
+        "S2" estimates are still available for comparison and reprodicibility 
+        purposes only.
             
         References
         ----------
         F. Guignard, F. Amato and M. Kanevski (in prep). On Extreme Learning 
         Machine Model Variance.
+
+        F. Guignard, M. Laib and M. Kanevski (in press). Model Variance for 
+        Extreme Learning Machine. 
         
         J.G. MacKinnon, H. White (1985). Some heteroskedasticity-consistent 
         covariance matrix estimators with improved finite sample properties, 
         Journal of econometrics, 29, 3, 305--325. 
                     
         ''' 
-        print("ELMEnsemble heteroskedastic_variance") 
-        n_obs, n_feat = self.X_.shape
-        X_predict = self.X_predict_
-        n_predict = X_predict.shape[0]
-                                    
-        # Heteroskedasic estimates
-        if estimate == 'old' :
-            
-            if approx == True :
-                # Collect H_, H_pinv_, H_predict and residuals in each model
-                None
-                
-            elif approx == False :
-                H_pinvs = np.zeros((self.n_neurons, n_obs, self.n_estimators))
-                H_predict = np.zeros((n_predict, self.n_neurons, self.n_estimators))
-                sq_residuals = np.zeros((n_obs, self.n_estimators))
-                Hs = np.zeros((n_obs, self.n_neurons, self.n_estimators))  #heterosk
-                for i in range(self.n_estimators):   
-                    elm = self.estimators_[i]
-                    H_pinvs[:, :, i] = elm.H_pinv_
-                    H_predict[:, :, i] = elm._H_compute(X_predict)
-                    sq_residuals[:, i] = np.square(elm.predict(self.X_) - self.y_)
-                    Hs[:, :, i] = elm.H_                    #heterosk
-                    
-                # Compute noise estimation for each model
-                diag_projs = np.einsum('ijm, jim -> im', Hs, H_pinvs)
-                noise = sq_residuals/np.square(1-diag_projs)   #optimize the square with the above for loop
-                
-                #Compute model variance induced by noise
-                var1 = np.einsum('nim, ijm, jm, kjl, nkl -> n', H_predict, H_pinvs,
-                                 noise, H_pinvs, H_predict, optimize = 'greedy')
-                var1 = var1 / (self.n_estimators**2)
-                
-                # Compute model variance induced by the random weights
-                var2 = self.y_var_/self.n_estimators
-
-                var_predict = var1 + var2
-                noise_estimate = noise.mean(axis = 1)                 
-
+        print("ELMEnsemble heteroskedastic_variance")                                     
+        H_pinvs, H_predict, residuals = self._collect()
+        Hs = self._collect_Hs()
+        
+        z = np.einsum('pnm, nsm -> psm', H_predict, H_pinvs, optimize = 'greedy')
+        Pdiag = np.einsum('nsm, snm -> nm', Hs, H_pinvs, optimize = 'greedy')
+        corr_res = residuals/(1-Pdiag)
+        
+        # Noise estimate
+        if corrected_residuals == False:
+            noise_estimate = np.square(residuals).mean(axis=1)       
+        elif corrected_residuals == True:
+            noise_estimate = np.square(corr_res).mean(axis=1)
+        else :
+            raise TypeError("Only booleans are allowed for the 'corrected_residuals' argument")
+        
+        if estimate == 'naive' :   # naive estimation from ESANN proceding
+            mu = z.mean(axis=2)
+            if approx == False :
+                Sigma = self._Sigma_estim(corr_res)
+                nu = self._nu_estim(z, Sigma)
+            elif approx == True :
+                Omega = np.square(corr_res)  
+                nu = self._nu_approx(z, Omega)
             else :
-                # raised error
-                None
-
-        elif estimate == 'S1' or estimate == 'S2' or estimate == 'S3' :
-
-            H_pinvs, H_predict, residuals = self._collect()
-            Hs = self._collect_Hs()
-            
-            z = np.einsum('pnm, nsm -> psm', H_predict, H_pinvs, optimize = 'greedy')
-            Pdiag = np.einsum('nsm, snm -> nm', Hs, H_pinvs, optimize = 'greedy')
-            corr_res = residuals/(1-Pdiag)
-            
-            # Noise estimate
-            if corrected_residuals == False:
-                noise_estimate = residuals.mean(axis=1)
+                raise TypeError("Only booleans are allowed for the 'approx' argument")
+            var1 = np.einsum('ps, ps -> p', mu, nu, optimize = 'greedy')                    
                 
-            elif corrected_residuals == True:
-                noise_estimate = corr_res.mean(axis=1)
-                
-            else :
-                raise TypeError("Only booleans are allowed for the 'corrected_residuals' argument")
-
-            # HC3 Jacknife estimation
+        elif estimate == 'S1' or estimate == 'S2' or estimate == 'S3': # estimation from Neurocomupting paper
             if approx == False :
                 Sigma = self._Sigma_estim(corr_res)
                 var1 = self._S1_estim(z, Sigma)                   #S1 estimate
@@ -609,8 +611,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
                     if estimate != 'S2' :
                         U = Sigma.mean(axis=2)
                         V = self._V_estim(z, U)
-                        var1 = self._S3_estim(mu, U, V, var1)     #S3 estimate
-                         
+                        var1 = self._S3_estim(mu, U, V, var1)     #S3 estimate                         
             elif approx == True :                                 #Simplified Jackknife
                 Omega = np.square(corr_res)                       
                 var1 = self._S1_approx(z, Omega)                  #S1_app estimate
@@ -621,18 +622,17 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
                     if estimate != 'S2' :
                         U_app = Omega.mean(axis = 1)    
                         V_app = self._V_approx(z, U_app)
-                        var1 = self._S3_approx(mu, U_app, V_app, var1)  #S3_app estimate
-      
+                        var1 = self._S3_approx(mu, U_app, V_app, var1)  #S3_app estimate  
             else :
                 raise TypeError("Only booleans are allowed for the 'approx' argument")
-                
-            # Compute model variance induced by the random weights and the total variance
-            var2 = self.y_var_/self.n_estimators
-            var_predict = var1 + var2
-            
-        else :
-            raise TypeError("Only 'S1', 'S2', or, 'S3' are allowed for the 'estimate' argument")
         
+        else :
+            raise TypeError("Only 'S1', 'S2', 'S3' or 'naive' are allowed for the 'estimate' argument")
+        
+        # Compute model variance induced by the random weights and the total variance
+        var2 = self.y_var_/self.n_estimators
+        var_predict = var1 + var2
+            
         return var_predict, noise_estimate    
     
 class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin): 
@@ -754,12 +754,15 @@ class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin):
             
         return H_alphas, H_predict, residuals
 
-    def homoskedastic_variance(self, approx=False):
+    def homoskedastic_variance(self, estimate='bias-reduced', approx=False):
         '''
         Compute an homoskedastic variance estimation of the model at last predicted points.
             
         Parameters
         ----------
+        estimate : string, optional
+            Estimate to use, 'naive' or 'bias-reduced'. The 'bias-reduced' estimate 
+            is recomended, see remark below. Default is 'bias-reduced'.
         approx : bool, optional
             Speed up computation using the Hastie and Tibshirani approximation
             of effective degrees of freedom. Default is 'False'.
@@ -770,11 +773,24 @@ class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin):
             Model variance estimation for y_predict.
         noise_estimate : numpy.float
             Noise estimate.
-            
+ 
+        Remark
+        ------
+        The "naive" estimate was proposed in a proceeding of the 28th European 
+        Symposium on Artificial Neural Networks, Computational Intelligence and 
+        Machine Learning (ESANN 2020). This work motivate the paper "On Extreme 
+        Learning Machine Model Variance" in which the "bias-reduced" estimate was 
+        proposed. In particular, it was shown that the later as a lower bias and, 
+        therefore, was recommended. The "naive estimate" is still available for
+        comparison and reprodicibility purposes only.
+                       
         References
         ----------
         F. Guignard, F. Amato and M. Kanevski (in prep). On Extreme Learning 
         Machine Model Variance.
+        
+        F. Guignard, M. Laib and M. Kanevski (in press). Model Variance for 
+        Extreme Learning Machine. 
         
         T.J. Hastie, R.J. Tibshirani (1990). 
         Generalized additive models, CRC press. 
@@ -805,7 +821,7 @@ class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin):
         noise = ARSS / ddof
         
         #Compute model variance induced by noise
-        muTmu = self._muTmu_estim(H_alphas, H_predict)
+        muTmu = self._muTmu_estim(H_alphas, H_predict, estimate)
         var1 = noise * muTmu
         
         # Compute model variance induced by the random weights

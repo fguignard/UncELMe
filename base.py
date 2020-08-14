@@ -30,9 +30,9 @@ def _Activation_function(M, func = 'logistic') :
     elif func == 'tanh' :
         M = np.tanh(M)
     
-    else :               # to polish
-        print ('Erreur')
-        print(fg)
+    else :
+        raise TypeError("Only 'logistic' or 'tanh' are available for the activation function")
+        
     return M
 
 def Timer(start,end):
