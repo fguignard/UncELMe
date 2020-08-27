@@ -806,15 +806,15 @@ class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin):
         if approx == False :
             PPtrace = np.einsum('ijm, jkm, klm, lim -> m', Hs, H_alphas, Hs, H_alphas, 
                                 optimize = 'greedy')  # Traces of the squared Hat matrices
-            gamma = 2*Ptrace.mean() - PPtrace.mean()
+            self.gamma_ = 2*Ptrace.mean() - PPtrace.mean()
             
         elif approx == True :
-            gamma = -1/2 + 5/4*Ptrace.mean()        
+            self.gamma_ = -1/2 + 5/4*Ptrace.mean()        
             
         else:
             raise TypeError("Only booleans are allowed for the 'approx' argument")
         
-        ddof = n_obs - gamma 
+        ddof = n_obs - self.gamma_ 
                 
         # Compute noise estimation
         ARSS = self._AvgRSS(residuals)
