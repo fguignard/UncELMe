@@ -300,12 +300,11 @@ class ELMRidgeCV(ELM, BaseEstimator, RegressorMixin):
                 
         self.H_ = self._H_compute(X)
         
-        HTH = np.array(self.H_.T*self.H_)
-        eigen = np.square(np.linalg.svd(HTH, compute_uv=False, 
-                                        hermitian=True))
-        eigen = eigen.reshape(eigen.shape[0], 1)
-        trace = (eigen/(eigen + self.alphas)).sum(axis=0)      
+        eigenHTH = np.square(np.linalg.svd(self.H_ , full_matrices= False, compute_uv=False, hermitian=False))
+        eigenHTH = eigenHTH.reshape(eigenHTH.shape[0], 1)
+        trace = (eigenHTH/(eigenHTH + self.alphas)).sum(axis=0)      
         
+        HTH = np.array(self.H_.T*self.H_)
         H_Tikh = HTH + self.alphas.reshape(self.alphas.shape[0], 1, 1) * np.identity(self.n_neurons)
         H_Tikh_inv = np.linalg.pinv(H_Tikh)
         
@@ -320,4 +319,5 @@ class ELMRidgeCV(ELM, BaseEstimator, RegressorMixin):
         self.coef_output_ = np.array(self.H_alpha_ * y).squeeze() # neurons x #resp, array
 
         return self
+
 

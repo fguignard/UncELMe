@@ -41,7 +41,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         None.
 
         '''
-        print("ELMEnsemble __init__")
+        # print("ELMEnsemble __init__")
         self.n_estimators = n_estimators
         self.n_neurons = n_neurons
         self.activation = activation
@@ -68,7 +68,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         Self.
         
         '''    
-        print("ELMEnsemble fit")                
+        # print("ELMEnsemble fit")                
         self.check = X.shape
         X, y = check_X_y(X, y)
         
@@ -112,7 +112,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
             Predicted output
 
         ''' 
-        print("ELMEnsemble predict")                         
+        # print("ELMEnsemble predict")                         
         check_is_fitted(self, ['X_', 'y_'])
         X_predict = check_array(X_predict)
         
@@ -140,7 +140,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         residuals : numpy array of shape (n_samples, n_estimators)
             Training residuals for all models.
         '''
-        print("ELMEnsemble _collect") 
+        # print("ELMEnsemble _collect") 
         n_obs = self.X_.shape[0]
         n_predict = self.X_predict_.shape[0]
         N = self.n_neurons
@@ -171,7 +171,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
             Residual sum of squares averaged over all ELMs.
             
         '''
-        print("ELMEnsemble _AvgRSS") 
+        # print("ELMEnsemble _AvgRSS") 
         sq_residuals = np.square(residuals)
         RSS = sq_residuals.sum(axis=0)
         ARSS = RSS.mean()
@@ -199,7 +199,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         Equation (10)
             
         '''    
-        print("ELMEnsemble _muTmu_estim") 
+        # print("ELMEnsemble _muTmu_estim") 
         N = self.n_estimators
         
         z = np.einsum('pnm, nsm -> psm', H_predict, H_pinvs, optimize = 'greedy')
@@ -253,7 +253,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         Extreme Learning Machine. 
             
         ''' 
-        print("ELMEnsemble homoskedastic_variance")                       
+        # print("ELMEnsemble homoskedastic_variance")                       
         n_obs = self.X_.shape[0]
         H_pinvs, H_predict, residuals = self._collect()
         
@@ -284,7 +284,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
              Hidden matrices.
 
         '''
-        print("ELMEnsemble _collect_Hs")  
+        # print("ELMEnsemble _collect_Hs")  
         n_obs = self.X_.shape[0]
         N = self.n_neurons
         M = self.n_estimators
@@ -311,7 +311,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
             output weights covariance matrix. 
             
         ''' 
-        print("ELMEnsemble _Sigma_estim")  
+        # print("ELMEnsemble _Sigma_estim")  
         n_obs = corr_res.shape[0]
         rrT = np.einsum('im, jm -> ijm', corr_res, corr_res, optimize = 'greedy')
         Sigma = np.zeros(rrT.shape)
@@ -337,7 +337,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
             S1 estimate, see section 3.3.
             
         '''    
-        print("ELMEnsemble _S1_estim")  
+        # print("ELMEnsemble _S1_estim")  
         S1 = np.einsum('pim, ijm, pjm -> p', z, Sigma, z, optimize = 'greedy')
         S1 = S1 /self.n_estimators
         
@@ -358,7 +358,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
             nu estimate, see section 3.3.
             
         '''    
-        print("ELMEnsemble _nu_estim") 
+        # print("ELMEnsemble _nu_estim") 
         nu = np.einsum('pim, ijm -> pj', z, Sigma, optimize = 'greedy')
         nu = nu / self.n_estimators
         return nu
@@ -380,7 +380,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
             S2 estimate, see section 3.3.
             
         '''    
-        print("ELMEnsemble _S2_estim") 
+        # print("ELMEnsemble _S2_estim") 
         nuTmu = np.einsum('ps, ps -> p', mu, nu, optimize = 'greedy')
         S2 = self.n_estimators * nuTmu - S1
         S2 = S2 / (self.n_estimators - 1)
@@ -402,7 +402,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
             Averaged quadratic form in z, see section 3.3.
             
         '''    
-        print("ELMEnsemble _V_estim") 
+        # print("ELMEnsemble _V_estim") 
         V = np.einsum('pim, ij, pjm -> p', z, U, z, optimize = 'greedy')
         V = V /self.n_estimators
         
@@ -427,7 +427,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
             S3 estimate, see section 3.3.
             
         '''    
-        print("ELMEnsemble _S3_estim") 
+        # print("ELMEnsemble _S3_estim") 
         muTUmu = np.einsum('pi, ij, pj -> p', mu, U, mu, optimize = 'greedy')
         S3 = self.n_estimators**2 * muTUmu - self.n_estimators*V - 2*(self.n_estimators-1)*S2
         S3 = S3 / ((self.n_estimators - 1) * (self.n_estimators - 2))
@@ -449,7 +449,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
             Approximation of S1 estimate, see section 3.3.
             
         '''    
-        print("ELMEnsemble _S1_approx") 
+        # print("ELMEnsemble _S1_approx") 
         S1_app = np.einsum('psm, sm, psm -> p', z, Omega, z, optimize = 'greedy')
         S1_app = S1_app/self.n_estimators
         
@@ -470,7 +470,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
             approximation of nu estimate, see section 3.3.
             
         '''    
-        print("ELMEnsemble _nu_approx") 
+        # print("ELMEnsemble _nu_approx") 
         nu_app = np.einsum('psm, sm -> ps', z, Omega, optimize = 'greedy')
         nu_app = nu_app / self.n_estimators
         return nu_app
@@ -490,7 +490,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
             Averaged quadratic form in z, see section 3.3.
             
         '''    
-        print("ELMEnsemble _V_approx") 
+        # print("ELMEnsemble _V_approx") 
         V_app = np.einsum('psm, s, psm -> p', z, U_app, z, optimize = 'greedy')
         V_app = V_app /self.n_estimators
         
@@ -515,7 +515,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
             Approximation of S3 estimate, see section 3.3.
             
         '''    
-        print("ELMEnsemble _S3_approx") 
+        # print("ELMEnsemble _S3_approx") 
         M = self.n_estimators
         muTUmu = np.einsum('ps, s, ps -> p', mu, U_app, mu, optimize = 'greedy')
         S3_app = M**2 * muTUmu - M*V_app - 2*(M-1)*S2_app
@@ -554,9 +554,9 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         Symposium on Artificial Neural Networks, Computational Intelligence and 
         Machine Learning (ESANN 2020). This work motivated the paper "On Extreme 
         Learning Machine Model Variance" in which the "S1", "S2" and "S3" estimates 
-        were proposed. In particular, it was shown empirically that "S3" as a lower 
-        bias among others and, therefore, was recommended. The "naive", "S1" and 
-        "S2" estimates are still available for comparison and reprodicibility 
+        were proposed. In particular, it was shown empirically that "S2" and "S3" have
+        a lower bias among others and, therefore, was recommended. The "naive" and 
+        "S1" estimates are still available for comparison and reprodicibility 
         purposes only.
             
         References
@@ -572,7 +572,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         Journal of econometrics, 29, 3, 305--325. 
                     
         ''' 
-        print("ELMEnsemble heteroskedastic_variance")                                     
+        # print("ELMEnsemble heteroskedastic_variance")                                     
         H_pinvs, H_predict, residuals = self._collect()
         Hs = self._collect_Hs()
         
@@ -669,7 +669,7 @@ class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin):
         None.
 
         '''
-        print("ELMEnsembleRidge __init__")      
+        # print("ELMEnsembleRidge __init__")      
         ELMEnsemble.__init__(self, n_estimators, n_neurons, activation, 
                             weight_distr, weight_scl, n_jobs, random_state)  
         self.alpha = alpha             
@@ -693,7 +693,7 @@ class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin):
         Self.
         
         '''    
-        print("ELMEnsembleRidge fit")                
+        # print("ELMEnsembleRidge fit")                
         self.check = X.shape
         X, y = check_X_y(X, y)
         
@@ -736,7 +736,7 @@ class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin):
         residuals : numpy array of shape (n_samples, n_estimators)
             Training residuals for all models.
         '''
-        print("ELMEnsembleRidge _collect") 
+        # print("ELMEnsembleRidge _collect") 
         n_obs = self.X_.shape[0]
         n_predict = self.X_predict_.shape[0]
         N = self.n_neurons
@@ -754,7 +754,7 @@ class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin):
             
         return H_alphas, H_predict, residuals
 
-    def homoskedastic_variance(self, estimate='bias-reduced', approx=False):
+    def homoskedastic_variance(self, estimate='bias-reduced'):
         '''
         Compute an homoskedastic variance estimation of the model at last predicted points.
             
@@ -763,9 +763,6 @@ class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin):
         estimate : string, optional
             Estimate to use, 'naive' or 'bias-reduced'. The 'bias-reduced' estimate 
             is recomended, see remark below. Default is 'bias-reduced'.
-        approx : bool, optional
-            Speed up computation using the Hastie and Tibshirani approximation
-            of effective degrees of freedom. Default is 'False'.
 
         Returns
         -------
@@ -791,28 +788,17 @@ class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin):
         
         F. Guignard, M. Laib and M. Kanevski (in press). Model Variance for 
         Extreme Learning Machine. 
-        
-        T.J. Hastie, R.J. Tibshirani (1990). 
-        Generalized additive models, CRC press. 
             
         ''' 
-        print("ELMEnsembleRidge homoskedastic_variance")                 
+        # print("ELMEnsembleRidge homoskedastic_variance")                 
         n_obs = self.X_.shape[0]
         H_alphas, H_predict, residuals = self._collect()
         Hs = self._collect_Hs()
-
-        # Compute the effective degrees of freedom  
-        Ptrace = np.einsum('ijm, jim -> m', Hs, H_alphas, optimize = 'greedy') # Traces of the Hat matrices 
-        if approx == False :
-            PPtrace = np.einsum('ijm, jkm, klm, lim -> m', Hs, H_alphas, Hs, H_alphas, 
-                                optimize = 'greedy')  # Traces of the squared Hat matrices
-            self.gamma_ = 2*Ptrace.mean() - PPtrace.mean()
-            
-        elif approx == True :
-            self.gamma_ = -1/2 + 5/4*Ptrace.mean()        
-            
-        else:
-            raise TypeError("Only booleans are allowed for the 'approx' argument")
+        Hs = Hs.transpose(2,0,1)
+        eigenHTHs = np.square(np.linalg.svd(Hs, full_matrices= False, compute_uv=False, hermitian=False))
+        eigenP = (eigenHTHs/(eigenHTHs + self.alpha))
+        eigenP2 = np.square(eigenP)
+        self.gamma_ = (2*eigenP - eigenP2).sum() / self.n_estimators
         
         ddof = n_obs - self.gamma_ 
                 
@@ -869,7 +855,7 @@ class ELMEnsembleRidgeCV(ELMEnsembleRidge, BaseEstimator, RegressorMixin):
         None.
 
         '''        
-        print("ELMEnsembleRidgeCV __init__")
+        # print("ELMEnsembleRidgeCV __init__")
         ELMEnsemble.__init__(self, n_estimators, n_neurons, activation, 
                              weight_distr, weight_scl, n_jobs, random_state)  
         self.alphas = alphas         
@@ -893,7 +879,7 @@ class ELMEnsembleRidgeCV(ELMEnsembleRidge, BaseEstimator, RegressorMixin):
         Self.
         
         '''    
-        print("ELMEnsembleRidgeCV fit")        
+        # print("ELMEnsembleRidgeCV fit")        
         self.check = X.shape
         X, y = check_X_y(X, y)
         
