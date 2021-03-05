@@ -47,7 +47,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         self.activation = activation
         self.weight_distr = weight_distr
         self.weight_scl = weight_scl              
-        self.n_jobs = n_jobs                        ## a paraleliser
+        self.n_jobs = n_jobs                        ## to parallelize
         self.random_state = random_state
         
     def fit(self, X, y):
@@ -66,6 +66,12 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         Returns
         -------
         Self.
+        
+        Reference
+        ---------
+        G.-B. Huang, Q.-Y. Zhu, C.-K. Siew, 
+        Extreme learning machine: theory and applications, 
+        Neurocomputing 70 (1-3) (2006) 489–501.  
         
         '''    
         # print("ELMEnsemble fit")                
@@ -225,7 +231,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         ----------
         estimate : string, optional
             Estimate to use, "naive" or "bias-reduced". The "bias-reduced" estimate 
-            is highly recomended, see remark below. Default is "bias-reduced".
+            is highly recommended, see remark below. Default is "bias-reduced".
         
         Returns
         -------
@@ -242,15 +248,18 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         Learning Machine Model Variance" in which the "bias-reduced" estimate was 
         proposed. In particular, it was shown that the later as a lower bias and, 
         therefore, was recommended. The "naive estimate" is still available for
-        comparison and reprodicibility purposes only.
+        comparison and reproducibility purposes only.
             
         References
-        ---------
-        F. Guignard, F. Amato and M. Kanevski (in prep). On Extreme Learning 
-        Machine Model Variance.        
+        ----------
+        F. Guignard, F. Amato and M. Kanevski. 
+        Uncertainty Quantification in Extreme Learning Machine:  
+        Analytical Developments, Variance Estimates and Confidence Intervals, 
+        Neurocomputing ??? (2021) ???.
         
-        F. Guignard, M. Laib and M. Kanevski (in press). Model Variance for 
-        Extreme Learning Machine. 
+        F. Guignard, M. Laib and M. Kanevski. 
+        Model Variance for Extreme Learning Machine,
+        ESANN, 2020.
             
         ''' 
         # print("ELMEnsemble homoskedastic_variance")                       
@@ -532,9 +541,9 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         ----------
         estimate : string, optional
             Estimate to use, "naive", "S1, S2" or "S3". The "S3" estimate 
-            is highly recomended, see remark below. Default is "S3".
+            is highly recommended, see remark below. Default is "S3".
         approx : bool, optional
-            Speed up computation at the expense of a sligntly approximate variance 
+            Speed up computation at the expense of a slightly approximate variance 
             estimation. Default is 'False'.
         corrected_residuals : bool, optional
             If True, the corrected residuals used to compute HC3 are squared and
@@ -556,20 +565,23 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         Learning Machine Model Variance" in which the "S1", "S2" and "S3" estimates 
         were proposed. In particular, it was shown empirically that "S2" and "S3" have
         a lower bias among others and, therefore, was recommended. The "naive" and 
-        "S1" estimates are still available for comparison and reprodicibility 
+        "S1" estimates are still available for comparison and reproducibility 
         purposes only.
             
         References
         ----------
-        F. Guignard, F. Amato and M. Kanevski (in prep). On Extreme Learning 
-        Machine Model Variance.
-
-        F. Guignard, M. Laib and M. Kanevski (in press). Model Variance for 
-        Extreme Learning Machine. 
+        F. Guignard, F. Amato and M. Kanevski. 
+        Uncertainty Quantification in Extreme Learning Machine:  
+        Analytical Developments, Variance Estimates and Confidence Intervals, 
+        Neurocomputing ??? (2021) ???.
         
-        J.G. MacKinnon, H. White (1985). Some heteroskedasticity-consistent 
+        F. Guignard, M. Laib and M. Kanevski. 
+        Model Variance for Extreme Learning Machine,
+        ESANN, 2020.
+        
+        J.G. MacKinnon, H. White. Some heteroskedasticity-consistent 
         covariance matrix estimators with improved finite sample properties, 
-        Journal of econometrics, 29, 3, 305--325. 
+        Journal of econometrics 29 (3) (1985) 305--325. 
                     
         ''' 
         # print("ELMEnsemble heteroskedastic_variance")                                     
@@ -588,7 +600,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         else :
             raise TypeError("Only booleans are allowed for the 'corrected_residuals' argument")
         
-        if estimate == 'naive' :   # naive estimation from ESANN proceding
+        if estimate == 'naive' :   # naive estimation from ESANN proceeding
             mu = z.mean(axis=2)
             if approx == False :
                 Sigma = self._Sigma_estim(corr_res)
@@ -677,7 +689,7 @@ class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin):
                 
     def fit(self, X, y):
         '''
-        Training for ELM ensemble.
+        Training for regularized ELM ensemble.
         Initialize random hidden weights and compute output weights 
         for all ELM models.
         
@@ -691,6 +703,12 @@ class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin):
         Returns
         -------
         Self.
+        
+        Reference
+        ---------
+        W. Deng, Q. Zheng, L. Chen,  
+        Regularized extreme learning machine, 
+        IEEE symposium on computational intelligence and data mining, 2009, pp. 389–395.
         
         '''    
         # print("ELMEnsembleRidge fit")                
@@ -762,7 +780,7 @@ class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin):
         ----------
         estimate : string, optional
             Estimate to use, 'naive' or 'bias-reduced'. The 'bias-reduced' estimate 
-            is recomended, see remark below. Default is 'bias-reduced'.
+            is recommended, see remark below. Default is 'bias-reduced'.
 
         Returns
         -------
@@ -779,15 +797,18 @@ class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin):
         Learning Machine Model Variance" in which the "bias-reduced" estimate was 
         proposed. In particular, it was shown that the later as a lower bias and, 
         therefore, was recommended. The "naive estimate" is still available for
-        comparison and reprodicibility purposes only.
+        comparison and reproducibility purposes only.
                        
         References
         ----------
-        F. Guignard, F. Amato and M. Kanevski (in prep). On Extreme Learning 
-        Machine Model Variance.
+        F. Guignard, F. Amato and M. Kanevski. 
+        Uncertainty Quantification in Extreme Learning Machine:  
+        Analytical Developments, Variance Estimates and Confidence Intervals, 
+        Neurocomputing ??? (2021) ???.
         
-        F. Guignard, M. Laib and M. Kanevski (in press). Model Variance for 
-        Extreme Learning Machine. 
+        F. Guignard, M. Laib and M. Kanevski. 
+        Model Variance for Extreme Learning Machine,
+        ESANN, 2020.
             
         ''' 
         # print("ELMEnsembleRidge homoskedastic_variance")                 
@@ -816,8 +837,6 @@ class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin):
         var_predict = var1 + var2 
             
         return var_predict, noise 
-     
-    
 
     
 class ELMEnsembleRidgeCV(ELMEnsembleRidge, BaseEstimator, RegressorMixin):
@@ -863,7 +882,7 @@ class ELMEnsembleRidgeCV(ELMEnsembleRidge, BaseEstimator, RegressorMixin):
     
     def fit(self, X, y):
         '''
-        Training for ELM ensemble.
+        Training for regularized ELM ensemble, with Generalized Cross Validation.
         Initialize random hidden weights and compute output weights 
         for all ELM models.
         
@@ -877,6 +896,16 @@ class ELMEnsembleRidgeCV(ELMEnsembleRidge, BaseEstimator, RegressorMixin):
         Returns
         -------
         Self.
+        
+        References
+        ----------
+        W. Deng, Q. Zheng, L. Chen,  
+        Regularized extreme learning machine, 
+        IEEE symposium on computational intelligence and data mining, 2009, pp. 389–395.
+        
+        G. H. Golub, M. Heath, G. Wahba, 
+        Generalized cross-validation as a method for choosing a good ridge parameter,
+        Technometrics 21 (2) (1979) 215–223.
         
         '''    
         # print("ELMEnsembleRidgeCV fit")        
@@ -908,5 +937,102 @@ class ELMEnsembleRidgeCV(ELMEnsembleRidge, BaseEstimator, RegressorMixin):
             self.estimators_[i] = elm
 
         return self    
+    
+    def _collect_alphas_opt(self):
+        '''
+        Collect alpha_opt in each model. Complete the _collect() function for the
+        homoskedastic GCV case.
 
+        Returns
+        -------
+        alphas_opt : numpy array of shape (n_estimators)
+             alpha_opt for each model of the ensemble.
 
+        '''
+        # print("ELMEnsembleRidgeCV _collect_alphas_opt")  
+        M = self.n_estimators
+        
+        alphas_opt = np.zeros((M))  
+        for i in range(M):   
+            elm = self.estimators_[i]
+            alphas_opt[i] = elm.alpha_opt  
+            
+        return alphas_opt
+
+    def homoskedastic_variance(self, estimate='bias-reduced'):
+        '''
+        Compute an homoskedastic variance estimation of the model at last predicted points.
+            
+        Parameters
+        ----------
+        estimate : string, optional
+            Estimate to use, 'naive' or 'bias-reduced'. The 'bias-reduced' estimate 
+            is recommended, see remark below. Default is 'bias-reduced'.
+
+        Returns
+        -------
+        var_predict : numpy array of shape (n_samples)
+            Model variance estimation for y_predict.
+        noise_estimate : numpy.float
+            Noise estimate.
+ 
+        Remark
+        ------
+        The "naive" estimate was proposed in a proceeding of the 28th European 
+        Symposium on Artificial Neural Networks, Computational Intelligence and 
+        Machine Learning (ESANN 2020). This work motivate the paper "On Extreme 
+        Learning Machine Model Variance" in which the "bias-reduced" estimate was 
+        proposed. In particular, it was shown that the later as a lower bias and, 
+        therefore, was recommended. The "naive estimate" is still available for
+        comparison and reproducibility purposes only.
+                       
+        References
+        ----------
+        F. Guignard, F. Amato and M. Kanevski. 
+        Uncertainty Quantification in Extreme Learning Machine:  
+        Analytical Developments, Variance Estimates and Confidence Intervals, 
+        Neurocomputing ??? (2021) ???.
+        
+        F. Guignard, M. Laib and M. Kanevski. 
+        Model Variance for Extreme Learning Machine,
+        ESANN, 2020.
+            
+        ''' 
+        # print("ELMEnsembleRidgeCV homoskedastic_variance")                 
+        n_obs = self.X_.shape[0]
+        H_alphas, H_predict, residuals = self._collect()
+        Hs = self._collect_Hs()          
+        Hs = Hs.transpose(2,0,1)
+        alphas_opt = self._collect_alphas_opt()                                 ### change from non GCV case
+        alphas_opt = alphas_opt.reshape((alphas_opt.shape[0], 1))               ### change from non GCV case
+        alphas_opt = alphas_opt.repeat(self.n_neurons, axis = 1)                ### change from non GCV case
+        eigenHTHs = np.square(np.linalg.svd(Hs, full_matrices= False, compute_uv=False, hermitian=False))
+        eigenP = (eigenHTHs/(eigenHTHs + alphas_opt))                           ### change from non GCV case
+        eigenP2 = np.square(eigenP)
+        self.gamma_ = (2*eigenP - eigenP2).sum() / self.n_estimators
+        
+        ddof = n_obs - self.gamma_ 
+                
+        # Compute noise estimation
+        ARSS = self._AvgRSS(residuals)
+        noise = ARSS / ddof
+        
+        #Compute model variance induced by noise
+        muTmu = self._muTmu_estim(H_alphas, H_predict, estimate)
+        var1 = noise * muTmu
+        
+        # Compute model variance induced by the random weights
+        var2 = self.y_var_/self.n_estimators
+
+        var_predict = var1 + var2 
+            
+        return var_predict, noise 
+
+# This homoskedastic_variance function could be re-written here : 
+# 1) Indeed, the svd is done twice when this class is used, because the homoskedastic_variance 
+#    function is inherited from the class ELMEnsembleRidge, where the svd is not done 
+#    during the fitting process. It could be done one time and store during the 
+#    fitting process of the ELMEnsembleRidgeCV and the ELMRidgeCV classes (elm_estimator.py).
+# 2) The writing can be optimize, as there is not too much changes comparing to 
+#    the ELMEnsembleRidge corresponding function.        
+# 3) Eventually put the alphas_opt in atribute during the fitting process.

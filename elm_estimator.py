@@ -25,7 +25,7 @@ class ELM(BaseEstimator, RegressorMixin):
             Distribution of weights ('uniform' or 'gaussian'). 
             The default is 'uniform'. 
         weight_scl : float, optional
-            Controle the scale of the weight distribution.
+            Control the scale of the weight distribution.
             If weights are uniforms, they are drawn from [-weight_scl, weight_scl].
             If weights are Gaussians, they are centred with standard deviation
             equal to weight_scl. The default is 1.0.
@@ -121,6 +121,12 @@ class ELM(BaseEstimator, RegressorMixin):
         -------
         Self.
         
+        Reference
+        ---------
+        G.-B. Huang, Q.-Y. Zhu, C.-K. Siew, 
+        Extreme learning machine: theory and applications, 
+        Neurocomputing 70 (1-3) (2006) 489–501.  
+        
         '''
         
         X, y = check_X_y(X, y)
@@ -181,7 +187,7 @@ class ELMRidge(ELM, BaseEstimator, RegressorMixin):
             Distribution of weights ('uniform' or 'gaussian'). 
             The default is 'uniform'. 
         weight_scl : float, optional
-            Controle the scale of the weight distribution.
+            Control the scale of the weight distribution.
             If weights are uniforms, they are drawn from [-weight_scl, weight_scl].
             If weights are Gaussians, they are centred with standard deviation
             equal to weight_scl. The default is 1.0.
@@ -199,7 +205,7 @@ class ELMRidge(ELM, BaseEstimator, RegressorMixin):
     
     def fit(self, X, y):
         '''
-        Training for ridge ELM.
+        Training for regularized ELM.
         Initialize random hidden weights and compute output weights.
         
         Parameters
@@ -212,6 +218,12 @@ class ELMRidge(ELM, BaseEstimator, RegressorMixin):
         Returns
         -------
         Self.
+        
+        Reference
+        ---------
+        W. Deng, Q. Zheng, L. Chen,  
+        Regularized extreme learning machine, 
+        IEEE symposium on computational intelligence and data mining, 2009, pp. 389–395.
         
         '''
         
@@ -264,7 +276,7 @@ class ELMRidgeCV(ELM, BaseEstimator, RegressorMixin):
         Returns
         -------
         None.
-
+        
         '''
         
         ELM.__init__(self, n_neurons, activation, weight_distr, weight_scl, random_state)
@@ -272,7 +284,7 @@ class ELMRidgeCV(ELM, BaseEstimator, RegressorMixin):
     
     def fit(self, X, y):
         '''
-        Training for ridge ELM, with Generalized Cross Validation
+        Training for ridge ELM, with Generalized Cross Validation.
         Initialize random hidden weights and compute output weights.
         
         Parameters
@@ -285,6 +297,16 @@ class ELMRidgeCV(ELM, BaseEstimator, RegressorMixin):
         Returns
         -------
         Self.
+        
+        References
+        ----------
+        W. Deng, Q. Zheng, L. Chen,  
+        Regularized extreme learning machine, 
+        IEEE symposium on computational intelligence and data mining, 2009, pp. 389–395.
+        
+        G. H. Golub, M. Heath, G. Wahba, 
+        Generalized cross-validation as a method for choosing a good ridge parameter,
+        Technometrics 21 (2) (1979) 215–223.
         
         '''
         
