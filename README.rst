@@ -14,11 +14,11 @@ UncELMe contains :
 
 More theoretical and implementation details can be found in 
 
->Guignard et al.
+> Guignard et al.
 
->Neurocomputing
+> Neurocomputing
 
-><https://doi.org/10.1016/j.neucom.2021.04.027>. Please refer to this article if you are using the package.
+> <https://doi.org/10.1016/j.neucom.2021.04.027>. Please refer to this article if you are using the package.
 
 
 The package can be installed via pip install command.
