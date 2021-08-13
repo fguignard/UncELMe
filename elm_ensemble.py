@@ -200,10 +200,6 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         muTmu : Numpy matrix of shape (n_predict)
             Unbiased estimate of the squared norm of mu
             
-        References
-        ----------
-        Equation (10)
-            
         '''    
         # print("ELMEnsemble _muTmu_estim") 
         N = self.n_estimators
@@ -244,8 +240,8 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         ------
         The "naive" estimate was proposed in a proceeding of the 28th European 
         Symposium on Artificial Neural Networks, Computational Intelligence and 
-        Machine Learning (ESANN 2020). This work motivated the paper "On Extreme 
-        Learning Machine Model Variance" in which the "bias-reduced" estimate was 
+        Machine Learning (ESANN 2020). This work motivated the Neurocomputing 
+        paper (see references below) in which the "bias-reduced" estimate was 
         proposed. In particular, it was shown that the later as a lower bias and, 
         therefore, was recommended. The "naive estimate" is still available for
         comparison and reproducibility purposes only.
@@ -255,12 +251,12 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         F. Guignard, F. Amato and M. Kanevski. 
         Uncertainty Quantification in Extreme Learning Machine:  
         Analytical Developments, Variance Estimates and Confidence Intervals, 
-        Neurocomputing ??? (2021) ???.
+        Neurocomputing 456 (2021) 436-449.
         
         F. Guignard, M. Laib and M. Kanevski. 
         Model Variance for Extreme Learning Machine,
-        ESANN, 2020.
-            
+        ESANN (2020) 703-708.
+
         ''' 
         # print("ELMEnsemble homoskedastic_variance")                       
         n_obs = self.X_.shape[0]
@@ -561,23 +557,22 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         ------
         The "naive" estimate was proposed in a proceeding of the 28th European 
         Symposium on Artificial Neural Networks, Computational Intelligence and 
-        Machine Learning (ESANN 2020). This work motivated the paper "On Extreme 
-        Learning Machine Model Variance" in which the "S1", "S2" and "S3" estimates 
-        were proposed. In particular, it was shown empirically that "S2" and "S3" have
-        a lower bias among others and, therefore, was recommended. The "naive" and 
-        "S1" estimates are still available for comparison and reproducibility 
-        purposes only.
+        Machine Learning (ESANN 2020). This work motivated the Neurocomputing 
+        paper (see references below) in which the "bias-reduced" estimate was 
+        proposed. In particular, it was shown that the later as a lower bias and, 
+        therefore, was recommended. The "naive estimate" is still available for
+        comparison and reproducibility purposes only.
             
         References
         ----------
         F. Guignard, F. Amato and M. Kanevski. 
         Uncertainty Quantification in Extreme Learning Machine:  
         Analytical Developments, Variance Estimates and Confidence Intervals, 
-        Neurocomputing ??? (2021) ???.
+        Neurocomputing 456 (2021) 436-449.
         
         F. Guignard, M. Laib and M. Kanevski. 
         Model Variance for Extreme Learning Machine,
-        ESANN, 2020.
+        ESANN (2020) 703-708.
         
         J.G. MacKinnon, H. White. Some heteroskedasticity-consistent 
         covariance matrix estimators with improved finite sample properties, 
@@ -789,26 +784,26 @@ class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin):
         noise_estimate : numpy.float
             Noise estimate.
  
-        Remark
+        Remarks
         ------
         The "naive" estimate was proposed in a proceeding of the 28th European 
         Symposium on Artificial Neural Networks, Computational Intelligence and 
-        Machine Learning (ESANN 2020). This work motivate the paper "On Extreme 
-        Learning Machine Model Variance" in which the "bias-reduced" estimate was 
+        Machine Learning (ESANN 2020). This work motivated the Neurocomputing 
+        paper (see references below) in which the "bias-reduced" estimate was 
         proposed. In particular, it was shown that the later as a lower bias and, 
         therefore, was recommended. The "naive estimate" is still available for
         comparison and reproducibility purposes only.
-                       
+            
         References
         ----------
         F. Guignard, F. Amato and M. Kanevski. 
         Uncertainty Quantification in Extreme Learning Machine:  
         Analytical Developments, Variance Estimates and Confidence Intervals, 
-        Neurocomputing ??? (2021) ???.
+        Neurocomputing 456 (2021) 436-449.
         
         F. Guignard, M. Laib and M. Kanevski. 
         Model Variance for Extreme Learning Machine,
-        ESANN, 2020.
+        ESANN (2020) 703-708.
             
         ''' 
         # print("ELMEnsembleRidge homoskedastic_variance")                 
@@ -837,6 +832,8 @@ class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin):
         var_predict = var1 + var2 
             
         return var_predict, noise 
+     
+    
 
     
 class ELMEnsembleRidgeCV(ELMEnsembleRidge, BaseEstimator, RegressorMixin):
@@ -976,26 +973,26 @@ class ELMEnsembleRidgeCV(ELMEnsembleRidge, BaseEstimator, RegressorMixin):
         noise_estimate : numpy.float
             Noise estimate.
  
-        Remark
+        Remarks
         ------
         The "naive" estimate was proposed in a proceeding of the 28th European 
         Symposium on Artificial Neural Networks, Computational Intelligence and 
-        Machine Learning (ESANN 2020). This work motivate the paper "On Extreme 
-        Learning Machine Model Variance" in which the "bias-reduced" estimate was 
+        Machine Learning (ESANN 2020). This work motivated the Neurocomputing 
+        paper (see references below) in which the "bias-reduced" estimate was 
         proposed. In particular, it was shown that the later as a lower bias and, 
         therefore, was recommended. The "naive estimate" is still available for
         comparison and reproducibility purposes only.
-                       
+            
         References
         ----------
         F. Guignard, F. Amato and M. Kanevski. 
         Uncertainty Quantification in Extreme Learning Machine:  
         Analytical Developments, Variance Estimates and Confidence Intervals, 
-        Neurocomputing ??? (2021) ???.
+        Neurocomputing 456 (2021) 436-449.
         
         F. Guignard, M. Laib and M. Kanevski. 
         Model Variance for Extreme Learning Machine,
-        ESANN, 2020.
+        ESANN (2020) 703-708.
             
         ''' 
         # print("ELMEnsembleRidgeCV homoskedastic_variance")                 
@@ -1028,11 +1025,12 @@ class ELMEnsembleRidgeCV(ELMEnsembleRidge, BaseEstimator, RegressorMixin):
             
         return var_predict, noise 
 
+# Future improvement
 # This homoskedastic_variance function could be re-written here : 
 # 1) Indeed, the svd is done twice when this class is used, because the homoskedastic_variance 
 #    function is inherited from the class ELMEnsembleRidge, where the svd is not done 
 #    during the fitting process. It could be done one time and store during the 
 #    fitting process of the ELMEnsembleRidgeCV and the ELMRidgeCV classes (elm_estimator.py).
-# 2) The writing can be optimize, as there is not too much changes comparing to 
+# 2) The writing could be optimize, as there is not too much changes comparing to 
 #    the ELMEnsembleRidge corresponding function.        
 # 3) Eventually put the alphas_opt in atribute during the fitting process.
