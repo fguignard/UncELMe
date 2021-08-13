@@ -12,7 +12,7 @@ UncELMe contains :
 
 * Estimates of model variance for the ensemble, including homoskedastic and heteroskedastic estimates for the  non-regularized and regularized cases.
 
-More theoretical and implementation details can be found in Guignard et al. <doi:10.1016/j.neucom.2021.04.027>. Please refer to this article if you are using the package.
+More theoretical and implementation details can be found in Guignard et al. <[doi:10.1016/j.neucom.2021.04.027]>. Please refer to this article if you are using the package.
 
 
 The package can be installed via pip install command.
