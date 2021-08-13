@@ -17,6 +17,12 @@ More theoretical and implementation details can be found in
 > Guignard et al.
 
 > Neurocomputing
+> Blockquotes are very handy in email to emulate reply text.
+> This line is part of the same quote.
+
+Quote break.
+
+> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote. 
 
 > <https://doi.org/10.1016/j.neucom.2021.04.027>. Please refer to this article if you are using the package.
 
