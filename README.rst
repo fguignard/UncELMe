@@ -20,7 +20,7 @@ Examples with the ELMEnsemble class are availaible on GitHub Gist to help you ge
 
 * An [example with the Boston data set](https://gist.github.com/fguignard/fc590de1b82621ed58fd82b9ef37a4fd) using homoskedastic and heteroskedastic estimates.
 
-Example with ELMEnsembleRidge and ELMEnsembleRidgeCV classes will follow.
+Examples with ELMEnsembleRidge and ELMEnsembleRidgeCV classes will follow.
 
 The package can be installed via pip install command.
 
