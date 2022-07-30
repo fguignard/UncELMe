@@ -27,10 +27,3 @@ The package can be installed via pip install command.
 
 * License : MIT
 
-
-
-Require
---------
-
-* numpy: 1.17.4
-* sklearn: 0.21.3
