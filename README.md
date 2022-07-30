@@ -23,6 +23,8 @@ Examples with ELMEnsembleRidge and ELMEnsembleRidgeCV classes will follow.
 
 The package can be installed via pip install command.
 
+```pip install UncELMe```
+
 * License : MIT
 
 
