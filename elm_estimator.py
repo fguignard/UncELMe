@@ -53,7 +53,7 @@ class ELM(BaseEstimator, RegressorMixin):
 
         Returns
         -------
-        H : Numpy matrix of shape (n_samples, n_neurons)
+        H : Numpy array of shape (n_samples, n_neurons)
             Data projected in the random feature space.
             
         '''    
@@ -62,13 +62,12 @@ class ELM(BaseEstimator, RegressorMixin):
         X = check_array(X)
         
         n_obs = X.shape[0]
-        X = np.matrix(X)
         
-        Input_weight = np.matrix(self.coef_hidden_)
-        Bias = np.matrix(self.intercept_hidden_)
+        Input_weight = self.coef_hidden_
+        Bias = np.reshape(self.intercept_hidden_, (1, -1))
         Bias_rep = Bias.repeat(n_obs, axis = 0)
         
-        H = _Activation_function(X * Input_weight + Bias_rep,
+        H = _Activation_function(X @ Input_weight + Bias_rep,
                                   func = self.activation)
         
         return H
@@ -134,7 +133,6 @@ class ELM(BaseEstimator, RegressorMixin):
         self.X_ = X
         self.y_ = y
         
-        X = np.matrix(X)
         n_obs, n_feat = X.shape
         
         self._weight_draw()
@@ -143,8 +141,8 @@ class ELM(BaseEstimator, RegressorMixin):
         
         self.H_pinv_ = np.linalg.pinv(self.H_, rcond = np.sqrt(np.finfo(float).eps)) 
             
-        y = np.matrix(y).T
-        self.coef_output_ = np.array(self.H_pinv_ * y).squeeze() # neurons x #resp, array
+        y = y.T
+        self.coef_output_ = (self.H_pinv_ @ y).squeeze() # neurons x #resp, array
 
         return self  
     
@@ -163,9 +161,9 @@ class ELM(BaseEstimator, RegressorMixin):
         ''' 
 
         H_predict = self._H_compute(X_predict)
-        Output_weight = np.matrix(self.coef_output_).T
+        Output_weight = self.coef_output_.T
         
-        y_predict = np.squeeze(np.asarray(H_predict * Output_weight))
+        y_predict = np.squeeze(H_predict @ Output_weight)
                 
         return y_predict
     
@@ -232,18 +230,17 @@ class ELMRidge(ELM, BaseEstimator, RegressorMixin):
         self.X_ = X
         self.y_ = y
         
-        X = np.matrix(X)
         n_obs, n_feat = X.shape
         
         self._weight_draw()
                 
         self.H_ = self._H_compute(X)   
 
-        H_Tikh = self.H_.T * self.H_ + self.alpha * np.identity(self.n_neurons)
-        self.H_alpha_ = np.linalg.pinv(H_Tikh) * self.H_.T
+        H_Tikh = self.H_.T @ self.H_ + self.alpha * np.identity(self.n_neurons)
+        self.H_alpha_ = np.linalg.pinv(H_Tikh) @ self.H_.T
             
-        y = np.matrix(y).T
-        self.coef_output_ = np.array(self.H_alpha_ * y).squeeze() # neurons x #resp, array
+        y = y.T
+        self.coef_output_ = (self.H_alpha_ @ y).squeeze() # neurons x #resp, array
 
         return self
     
@@ -315,7 +312,6 @@ class ELMRidgeCV(ELM, BaseEstimator, RegressorMixin):
         self.X_ = X
         self.y_ = y
         
-        X = np.matrix(X)
         n_obs, n_feat = X.shape
         
         self._weight_draw()
@@ -326,7 +322,7 @@ class ELMRidgeCV(ELM, BaseEstimator, RegressorMixin):
         eigenHTH = eigenHTH.reshape(eigenHTH.shape[0], 1)
         trace = (eigenHTH/(eigenHTH + self.alphas)).sum(axis=0)      
         
-        HTH = np.array(self.H_.T*self.H_)
+        HTH = self.H_.T@self.H_
         H_Tikh = HTH + self.alphas.reshape(self.alphas.shape[0], 1, 1) * np.identity(self.n_neurons)
         H_Tikh_inv = np.linalg.pinv(H_Tikh)
         
@@ -335,10 +331,10 @@ class ELMRidgeCV(ELM, BaseEstimator, RegressorMixin):
         self.GCV = np.linalg.norm(y-y_hat, axis = 1)
         self.GCV = n_obs * self.GCV /np.square(n_obs-trace)
         self.alpha_opt = self.alphas[np.argmin(self.GCV)]
-        self.H_alpha_ = H_Tikh_inv[np.argmin(self.GCV)] * self.H_.T
+        self.H_alpha_ = H_Tikh_inv[np.argmin(self.GCV)] @ self.H_.T
                         
-        y = np.matrix(y).T
-        self.coef_output_ = np.array(self.H_alpha_ * y).squeeze() # neurons x #resp, array
+        y = y.T
+        self.coef_output_ = (self.H_alpha_ @ y).squeeze() # neurons x #resp, array
 
         return self
 

@@ -173,7 +173,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
 
         Returns
         -------
-        ARSS : Numpy matrix of shape (n_predict, n_samples)
+        ARSS : Numpy array of shape (n_predict, n_samples)
             Residual sum of squares averaged over all ELMs.
             
         '''
@@ -197,7 +197,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
 
         Returns
         -------
-        muTmu : Numpy matrix of shape (n_predict)
+        muTmu : Numpy array of shape (n_predict)
             Unbiased estimate of the squared norm of mu
             
         '''    
@@ -310,7 +310,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
 
         Returns
         -------
-        Sigma : Numpy matrix of shape (n_samples, n_samples, n_estimators)
+        Sigma : Numpy array of shape (n_samples, n_samples, n_estimators)
             Estimates of noise covariance matrices for all ELMs,
             based on the ordinary Jackknife estimate (HC3) of the 
             output weights covariance matrix. 
@@ -331,7 +331,7 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         '''
         Parameters
         ----------
-        z : Numpy matrix of shape (n_predict, n_samples, n_estimators)
+        z : Numpy array of shape (n_predict, n_samples, n_estimators)
             "z" vectors at all predicted points for all ELMs.
         Sigma : Numpy matrix of shape (n_samples, n_samples, n_estimators)
             Estimates of noise covariance matrices for all ELMs.
@@ -352,14 +352,14 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         '''
         Parameters
         ----------
-        z : Numpy matrix of shape (n_predict, n_samples, n_estimators)
+        z : Numpy array of shape (n_predict, n_samples, n_estimators)
             "z" vectors at all predicted points for all ELMs.
-        Sigma : Numpy matrix of shape (n_samples, n_samples, n_estimators)
+        Sigma : Numpy array of shape (n_samples, n_samples, n_estimators)
             Estimates of noise covariance matrices for all ELMs.
             
         Returns
         -------
-        nu : Numpy matrix of shape (n_predict, n_samples)
+        nu : Numpy array of shape (n_predict, n_samples)
             nu estimate, see section 3.3.
             
         '''    
@@ -372,16 +372,16 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         '''
         Parameters
         ----------
-        mu : Numpy matrix of shape (n_predict, n_samples)
+        mu : Numpy array of shape (n_predict, n_samples)
             Average of z across all ELMs.
-        nu : Numpy matrix of shape (n_predict, n_samples)
+        nu : Numpy array of shape (n_predict, n_samples)
             nu estimate, see section 3.3.
-        S1 : Numpy matrix of shape (n_predict, n_samples)
+        S1 : Numpy array of shape (n_predict, n_samples)
             S1 estimate.
 
         Returns
         -------
-        S2 : Numpy matrix of shape (n_predict, n_samples)
+        S2 : Numpy array of shape (n_predict, n_samples)
             S2 estimate, see section 3.3.
             
         '''    
@@ -396,14 +396,14 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         '''
         Parameters
         ----------
-        z : Numpy matrix of shape (n_predict, n_samples, n_estimators)
+        z : Numpy array of shape (n_predict, n_samples, n_estimators)
             "z" vectors at all predicted points for all ELMs.
-        U : Numpy matrix of shape (n_samples, n_samples)
+        U : Numpy array of shape (n_samples, n_samples)
             Average of the noise covariance matrices estimates.
 
         Returns
         -------
-        V : Numpy matrix of shape (n_predict)
+        V : Numpy array of shape (n_predict)
             Averaged quadratic form in z, see section 3.3.
             
         '''    
@@ -417,18 +417,18 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         '''
         Parameters
         ----------
-        mu : Numpy matrix of shape (n_predict, n_samples)
+        mu : Numpy array of shape (n_predict, n_samples)
             Average of z across all ELMs.
-        U : Numpy matrix of shape (n_samples, n_samples)
+        U : Numpy array of shape (n_samples, n_samples)
             Average of the noise covariance matrices estimates.
-        V : Numpy matrix of shape (n_predict)
+        V : Numpy array of shape (n_predict)
             Averaged quadratic form in z,
-        S2 : Numpy matrix of shape (n_predict, n_samples)
+        S2 : Numpy array of shape (n_predict, n_samples)
             S2 estimate.
 
         Returns
         -------
-        S3 : Numpy matrix of shape (n_predict, n_samples)
+        S3 : Numpy array of shape (n_predict, n_samples)
             S3 estimate, see section 3.3.
             
         '''    
@@ -443,14 +443,14 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         '''
         Parameters
         ----------
-        z : Numpy matrix of shape (n_predict, n_samples, n_estimators)
+        z : Numpy array of shape (n_predict, n_samples, n_estimators)
             "z" vectors at all predicted points for all ELMs.
-        Omega : Numpy matrix of shape (n_samples, n_estimators)
+        Omega : Numpy array of shape (n_samples, n_estimators)
             Estimates of noise covariance matrix diagonals for all ELMs.
 
         Returns
         -------
-        S1_app : Numpy matrix of shape (n_predict, n_samples)
+        S1_app : Numpy array of shape (n_predict, n_samples)
             Approximation of S1 estimate, see section 3.3.
             
         '''    
@@ -464,14 +464,14 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         '''
         Parameters
         ----------
-        z : Numpy matrix of shape (n_predict, n_samples, n_estimators)
+        z : Numpy array of shape (n_predict, n_samples, n_estimators)
             "z" vectors at all predicted points for all ELMs.
-        Omega : Numpy matrix of shape (n_samples, n_estimators)
+        Omega : Numpy array of shape (n_samples, n_estimators)
             Estimates of noise covariance matrix diagonals for all ELMs.
             
         Returns
         -------
-        nu_app : Numpy matrix of shape (n_predict, n_samples)
+        nu_app : Numpy array of shape (n_predict, n_samples)
             approximation of nu estimate, see section 3.3.
             
         '''    
@@ -484,14 +484,14 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         '''
         Parameters
         ----------
-        z : Numpy matrix of shape (n_predict, n_samples, n_estimators)
+        z : Numpy array of shape (n_predict, n_samples, n_estimators)
             "z" vectors at all predicted points for all ELMs.
-        U : Numpy matrix of shape (n_samples)
+        U : Numpy array of shape (n_samples)
             Average of the noise covariance matrices diagonal estimates.
 
         Returns
         -------
-        V_app : Numpy matrix of shape (n_predict)
+        V_app : Numpy array of shape (n_predict)
             Averaged quadratic form in z, see section 3.3.
             
         '''    
@@ -505,18 +505,18 @@ class ELMEnsemble(BaseEstimator, RegressorMixin):
         '''
         Parameters
         ----------
-        mu : Numpy matrix of shape (n_predict, n_samples)
+        mu : Numpy array of shape (n_predict, n_samples)
             Average of z across all ELMs.
-        U_app : Numpy matrix of shape (n_samples)
+        U_app : Numpy array of shape (n_samples)
             Average of the noise covariance matrices diagonal estimates.
-        V_app : Numpy matrix of shape (n_predict)
+        V_app : Numpy array of shape (n_predict)
             Averaged quadratic form in z,
-        S2_app : Numpy matrix of shape (n_predict, n_samples)
+        S2_app : Numpy array of shape (n_predict, n_samples)
             Approximate S2 estimate.
 
         Returns
         -------
-        S3 : Numpy matrix of shape (n_predict, n_samples)
+        S3 : Numpy array of shape (n_predict, n_samples)
             Approximation of S3 estimate, see section 3.3.
             
         '''    
