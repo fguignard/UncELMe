@@ -1,0 +1,3113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>UncELMe.elm_ensemble API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>UncELMe.elm_ensemble</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python"># -*- coding: utf-8 -*-
+
+import numpy as np
+from .elm_estimator import ELM, ELMRidge, ELMRidgeCV
+from sklearn.base import BaseEstimator, RegressorMixin
+from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
+
+class ELMEnsemble(BaseEstimator, RegressorMixin):
+    &#39;&#39;&#39;
+    Instances of the ELMEnsemble class are scikit-learn compatible estimators for regression 
+    based on ensemble of Extreme Learning Machine estimators from the ELM class.
+    This class provides estimation of model variance for the ensemble, under homoskedastic and 
+    heteroskedastic assumptions.
+
+    &#39;&#39;&#39;
+    
+    def __init__(self, n_estimators=20, n_neurons=100, 
+                 activation=&#39;logistic&#39;, weight_distr=&#39;uniform&#39;, weight_scl=1.0, 
+                 n_jobs=1, random_state=None):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        n_estimators : integer,
+            Number of ELM models in the ensemble. The default is 20.
+        n_neurons : integer,
+            Number of neurons of each model. The default is 100.
+        activation : string, optional
+            Activation function (&#39;logistic&#39; or &#39;tanh&#39;). The default is &#39;logistic&#39;.
+        weight_distr : string, optional
+            Distribution of weights (&#39;uniform&#39; or &#39;gaussian&#39;). 
+            The default is &#39;uniform&#39;. 
+        weight_scl : float, optional
+            Control the scale of the weight distribution.
+            If weights are uniforms, they are drawn from [-weight_scl, weight_scl].
+            If weights are Gaussians, they are centred with standard deviation
+            equal to weight_scl. The default is 1.0.
+        n_jobs : integer,
+            Number of processors to use for the computation.
+        random_state : integer, optional
+            Random seed for reproductible results. The default is None.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        # print(&#34;ELMEnsemble __init__&#34;)
+        self.n_estimators = n_estimators
+        self.n_neurons = n_neurons
+        self.activation = activation
+        self.weight_distr = weight_distr
+        self.weight_scl = weight_scl              
+        self.n_jobs = n_jobs                        ## to parallelize
+        self.random_state = random_state
+        
+    def fit(self, X, y):
+        &#39;&#39;&#39;
+        Training for ELM ensemble.
+        Initialize random hidden weights and compute output weights 
+        for all ELM models.
+        
+        Parameters
+        ----------
+        X : Numpy array of shape (n_sample_train, n_features)
+            Training data.
+        y : Numpy array of shape (n_sample_train)
+            Target values.
+
+        Returns
+        -------
+        Self.
+        
+        Reference
+        ---------
+        G.-B. Huang, Q.-Y. Zhu, C.-K. Siew, 
+        Extreme learning machine: theory and applications, 
+        Neurocomputing 70 (1-3) (2006) 489–501.  
+        
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble fit&#34;)                
+        self.check = X.shape
+        X, y = check_X_y(X, y)
+        
+        self.X_ = X
+        self.y_ = y
+        
+        # random_state variable treatment
+        if self.random_state == None :
+            random_states = [None] * self.n_estimators
+            random_states = np.array(random_states)
+        else :
+            np.random.seed(self.random_state)
+            random_states = np.random.randint(int(1e8), size = self.n_estimators)
+        
+        # multiple fitting
+        n_obs, n_feat = X.shape
+        self.estimators_ = [0] * self.n_estimators
+        for i in range(self.n_estimators):
+            elm = ELM(n_neurons = self.n_neurons,
+                      activation = self.activation,
+                      weight_distr = self.weight_distr, 
+                      weight_scl = self.weight_scl,
+                      random_state = random_states[i])
+            elm.fit(X,y)
+            self.estimators_[i] = elm
+
+        return self
+    
+    def predict(self, X_predict):
+        &#39;&#39;&#39;
+        Averaged prediction of ELM ensemble.
+        
+        Parameters
+        ----------
+        X_predict : Numpy array of shape (n_samples, n_features)
+            Input data to predict.
+
+        Returns
+        -------
+        y_predict : Numpy array of shape (n_samples)
+            Predicted output
+
+        &#39;&#39;&#39; 
+        # print(&#34;ELMEnsemble predict&#34;)                         
+        check_is_fitted(self, [&#39;X_&#39;, &#39;y_&#39;])
+        X_predict = check_array(X_predict)
+        
+        self.X_predict_ = X_predict
+        
+        y_predict = np.zeros((X_predict.shape[0], self.n_estimators))
+        for i in range(self.n_estimators):
+             y_predict[:,i] = self.estimators_[i].predict(X_predict)
+        
+        self.y_var_ = y_predict.var(axis = 1, ddof = 1)   
+        y_predict_avg = y_predict.mean(axis = 1)    
+        
+        return y_predict_avg
+  
+    def _collect(self):
+        &#39;&#39;&#39;
+        Collect H_pinv_, H_predict and residuals in each model
+
+        Returns
+        -------
+        H_pinvs : numpy array of shape (n_neurons, n_samples, n_estimators)
+            Pseudo-inverses of hidden matrices.
+        H_predict : numpy array of shape (n_predicted_points, n_neurons, n_estimators)
+            Hidden matrices for all the predicted points.
+        residuals : numpy array of shape (n_samples, n_estimators)
+            Training residuals for all models.
+        &#39;&#39;&#39;
+        # print(&#34;ELMEnsemble _collect&#34;) 
+        n_obs = self.X_.shape[0]
+        n_predict = self.X_predict_.shape[0]
+        N = self.n_neurons
+        M = self.n_estimators
+        
+        H_pinvs = np.zeros((N, n_obs, M))
+        H_predict = np.zeros((n_predict, N, M))
+        residuals = np.zeros((n_obs, M))
+        
+        for i in range(M):   
+            elm = self.estimators_[i]
+            H_pinvs[:, :, i] = elm.H_pinv_
+            H_predict[:, :, i] = elm._H_compute(self.X_predict_)
+            residuals[:, i] = elm.predict(self.X_) - self.y_
+            
+        return H_pinvs, H_predict, residuals
+    
+    def _AvgRSS(self, residuals):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        residuals : Numpy array of shape (n_samples, n_estimators)
+            Training residuals for all ELMs. 
+
+        Returns
+        -------
+        ARSS : Numpy array of shape (n_predict, n_samples)
+            Residual sum of squares averaged over all ELMs.
+            
+        &#39;&#39;&#39;
+        # print(&#34;ELMEnsemble _AvgRSS&#34;) 
+        sq_residuals = np.square(residuals)
+        RSS = sq_residuals.sum(axis=0)
+        ARSS = RSS.mean()
+        
+        return ARSS    
+    
+    def _muTmu_estim(self, H_pinvs, H_predict, estimate):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        H_pinvs : Numpy array of shape (n_neurons, n_samples, n_estimators)
+            Pseudoinverse matrices for all ELMs. (or H_alphas in the regularized case)
+        H_predict : Numpy array of shape (n_predict, n_neurons, n_estimators)
+            Hidden vectors at all predicted points for all ELMs.
+        estimate : string, optional
+            Estimate to use, &#34;naive&#34; or &#34;bias-reduced&#34;.
+
+        Returns
+        -------
+        muTmu : Numpy array of shape (n_predict)
+            Unbiased estimate of the squared norm of mu
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _muTmu_estim&#34;) 
+        N = self.n_estimators
+        
+        z = np.einsum(&#39;pnm, nsm -&gt; psm&#39;, H_predict, H_pinvs, optimize = &#39;greedy&#39;)
+        mu = z.mean(axis=2)
+    
+        muTmu = np.einsum(&#39;ps, ps -&gt; p &#39;, mu, mu)
+        if estimate == &#39;bias-reduced&#39;:
+            muTmu *= N/(N-1)
+            quad_terms = np.einsum(&#39;psm, psm -&gt; p &#39;, z, z)
+            muTmu += - quad_terms/(N*(N-1))
+        elif estimate == &#39;naive&#39; :
+            None
+        else :
+            raise TypeError(&#34;Only &#39;bias-reduced&#39; or &#39;naive&#39; are allowed for the &#39;estimate&#39; argument&#34;)
+            
+        return muTmu
+    
+    def homoskedastic_variance(self, estimate = &#39;bias-reduced&#39;):
+        &#39;&#39;&#39;
+        Compute an homoskedastic variance estimation of the model at last predicted points.
+            
+        Parameters
+        ----------
+        estimate : string, optional
+            Estimate to use, &#34;naive&#34; or &#34;bias-reduced&#34;. The &#34;bias-reduced&#34; estimate 
+            is highly recommended, see remark below. Default is &#34;bias-reduced&#34;.
+        
+        Returns
+        -------
+        var_predict : numpy array of shape (n_samples)
+            Model variance estimation for y_predict.
+        noise_estimate : float
+            Noise estimate.
+            
+        Remarks
+        ------
+        The &#34;naive&#34; estimate was proposed in a proceeding of the 28th European 
+        Symposium on Artificial Neural Networks, Computational Intelligence and 
+        Machine Learning (ESANN 2020). This work motivated the Neurocomputing 
+        paper (see references below) in which the &#34;bias-reduced&#34; estimate was 
+        proposed. In particular, it was shown that the later as a lower bias and, 
+        therefore, was recommended. The &#34;naive estimate&#34; is still available for
+        comparison and reproducibility purposes only.
+            
+        References
+        ----------
+        F. Guignard, F. Amato and M. Kanevski. 
+        Uncertainty Quantification in Extreme Learning Machine:  
+        Analytical Developments, Variance Estimates and Confidence Intervals, 
+        Neurocomputing 456 (2021) 436-449.
+        
+        F. Guignard, M. Laib and M. Kanevski. 
+        Model Variance for Extreme Learning Machine,
+        ESANN (2020) 703-708.
+
+        &#39;&#39;&#39; 
+        # print(&#34;ELMEnsemble homoskedastic_variance&#34;)                       
+        n_obs = self.X_.shape[0]
+        H_pinvs, H_predict, residuals = self._collect()
+        
+        # Compute noise estimation
+        ddof = n_obs - self.n_neurons
+        ARSS = self._AvgRSS(residuals)
+        noise = ARSS / ddof
+        
+        #Compute model variance induced by noise
+        muTmu = self._muTmu_estim(H_pinvs, H_predict, estimate)
+        var1 = noise * muTmu
+        
+        # Compute model variance induced by the random weights
+        var2 = self.y_var_/self.n_estimators
+
+        var_predict = var1 + var2 
+            
+        return var_predict, noise 
+  
+    def _collect_Hs(self):
+        &#39;&#39;&#39;
+        Collect Hs in each model. Complete the _collect() function for the
+        heteroskedastic case.
+
+        Returns
+        -------
+        Hs : numpy array of shape (n_neurons, n_samples, n_estimators)
+             Hidden matrices.
+
+        &#39;&#39;&#39;
+        # print(&#34;ELMEnsemble _collect_Hs&#34;)  
+        n_obs = self.X_.shape[0]
+        N = self.n_neurons
+        M = self.n_estimators
+        
+        Hs = np.zeros((n_obs, N, M))  
+        for i in range(M):   
+            elm = self.estimators_[i]
+            Hs[:, :, i] = elm.H_  
+            
+        return Hs
+    
+    def _Sigma_estim(self, corr_res):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        corr_res : Numpy array of shape (n_samples, n_estimators)
+            Training corrected residuals for all ELMs. 
+
+        Returns
+        -------
+        Sigma : Numpy array of shape (n_samples, n_samples, n_estimators)
+            Estimates of noise covariance matrices for all ELMs,
+            based on the ordinary Jackknife estimate (HC3) of the 
+            output weights covariance matrix. 
+            
+        &#39;&#39;&#39; 
+        # print(&#34;ELMEnsemble _Sigma_estim&#34;)  
+        n_obs = corr_res.shape[0]
+        rrT = np.einsum(&#39;im, jm -&gt; ijm&#39;, corr_res, corr_res, optimize = &#39;greedy&#39;)
+        Sigma = np.zeros(rrT.shape)
+        for m in range(Sigma.shape[2]):
+            Sigma[:,:,m] = np.diag(np.square(corr_res[:, m]))
+        Sigma += -rrT/n_obs
+        Sigma *= ((n_obs-1)/n_obs)
+        
+        return Sigma
+    
+    def _S1_estim(self, z, Sigma):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        z : Numpy array of shape (n_predict, n_samples, n_estimators)
+            &#34;z&#34; vectors at all predicted points for all ELMs.
+        Sigma : Numpy matrix of shape (n_samples, n_samples, n_estimators)
+            Estimates of noise covariance matrices for all ELMs.
+
+        Returns
+        -------
+        S1 : Numpy matrix of shape (n_predict, n_samples)
+            S1 estimate, see section 3.3.
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _S1_estim&#34;)  
+        S1 = np.einsum(&#39;pim, ijm, pjm -&gt; p&#39;, z, Sigma, z, optimize = &#39;greedy&#39;)
+        S1 = S1 /self.n_estimators
+        
+        return S1 
+    
+    def _nu_estim(self, z, Sigma):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        z : Numpy array of shape (n_predict, n_samples, n_estimators)
+            &#34;z&#34; vectors at all predicted points for all ELMs.
+        Sigma : Numpy array of shape (n_samples, n_samples, n_estimators)
+            Estimates of noise covariance matrices for all ELMs.
+            
+        Returns
+        -------
+        nu : Numpy array of shape (n_predict, n_samples)
+            nu estimate, see section 3.3.
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _nu_estim&#34;) 
+        nu = np.einsum(&#39;pim, ijm -&gt; pj&#39;, z, Sigma, optimize = &#39;greedy&#39;)
+        nu = nu / self.n_estimators
+        return nu
+    
+    def _S2_estim(self, mu, nu, S1):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        mu : Numpy array of shape (n_predict, n_samples)
+            Average of z across all ELMs.
+        nu : Numpy array of shape (n_predict, n_samples)
+            nu estimate, see section 3.3.
+        S1 : Numpy array of shape (n_predict, n_samples)
+            S1 estimate.
+
+        Returns
+        -------
+        S2 : Numpy array of shape (n_predict, n_samples)
+            S2 estimate, see section 3.3.
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _S2_estim&#34;) 
+        nuTmu = np.einsum(&#39;ps, ps -&gt; p&#39;, mu, nu, optimize = &#39;greedy&#39;)
+        S2 = self.n_estimators * nuTmu - S1
+        S2 = S2 / (self.n_estimators - 1)
+        
+        return S2
+    
+    def _V_estim(self, z, U):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        z : Numpy array of shape (n_predict, n_samples, n_estimators)
+            &#34;z&#34; vectors at all predicted points for all ELMs.
+        U : Numpy array of shape (n_samples, n_samples)
+            Average of the noise covariance matrices estimates.
+
+        Returns
+        -------
+        V : Numpy array of shape (n_predict)
+            Averaged quadratic form in z, see section 3.3.
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _V_estim&#34;) 
+        V = np.einsum(&#39;pim, ij, pjm -&gt; p&#39;, z, U, z, optimize = &#39;greedy&#39;)
+        V = V /self.n_estimators
+        
+        return V 
+
+    def _S3_estim(self, mu, U, V, S2):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        mu : Numpy array of shape (n_predict, n_samples)
+            Average of z across all ELMs.
+        U : Numpy array of shape (n_samples, n_samples)
+            Average of the noise covariance matrices estimates.
+        V : Numpy array of shape (n_predict)
+            Averaged quadratic form in z,
+        S2 : Numpy array of shape (n_predict, n_samples)
+            S2 estimate.
+
+        Returns
+        -------
+        S3 : Numpy array of shape (n_predict, n_samples)
+            S3 estimate, see section 3.3.
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _S3_estim&#34;) 
+        muTUmu = np.einsum(&#39;pi, ij, pj -&gt; p&#39;, mu, U, mu, optimize = &#39;greedy&#39;)
+        S3 = self.n_estimators**2 * muTUmu - self.n_estimators*V - 2*(self.n_estimators-1)*S2
+        S3 = S3 / ((self.n_estimators - 1) * (self.n_estimators - 2))
+        
+        return S3
+    
+    def _S1_approx(self, z, Omega):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        z : Numpy array of shape (n_predict, n_samples, n_estimators)
+            &#34;z&#34; vectors at all predicted points for all ELMs.
+        Omega : Numpy array of shape (n_samples, n_estimators)
+            Estimates of noise covariance matrix diagonals for all ELMs.
+
+        Returns
+        -------
+        S1_app : Numpy array of shape (n_predict, n_samples)
+            Approximation of S1 estimate, see section 3.3.
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _S1_approx&#34;) 
+        S1_app = np.einsum(&#39;psm, sm, psm -&gt; p&#39;, z, Omega, z, optimize = &#39;greedy&#39;)
+        S1_app = S1_app/self.n_estimators
+        
+        return S1_app
+              
+    def _nu_approx(self, z, Omega):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        z : Numpy array of shape (n_predict, n_samples, n_estimators)
+            &#34;z&#34; vectors at all predicted points for all ELMs.
+        Omega : Numpy array of shape (n_samples, n_estimators)
+            Estimates of noise covariance matrix diagonals for all ELMs.
+            
+        Returns
+        -------
+        nu_app : Numpy array of shape (n_predict, n_samples)
+            approximation of nu estimate, see section 3.3.
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _nu_approx&#34;) 
+        nu_app = np.einsum(&#39;psm, sm -&gt; ps&#39;, z, Omega, optimize = &#39;greedy&#39;)
+        nu_app = nu_app / self.n_estimators
+        return nu_app
+
+    def _V_approx(self, z, U_app):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        z : Numpy array of shape (n_predict, n_samples, n_estimators)
+            &#34;z&#34; vectors at all predicted points for all ELMs.
+        U : Numpy array of shape (n_samples)
+            Average of the noise covariance matrices diagonal estimates.
+
+        Returns
+        -------
+        V_app : Numpy array of shape (n_predict)
+            Averaged quadratic form in z, see section 3.3.
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _V_approx&#34;) 
+        V_app = np.einsum(&#39;psm, s, psm -&gt; p&#39;, z, U_app, z, optimize = &#39;greedy&#39;)
+        V_app = V_app /self.n_estimators
+        
+        return V_app 
+
+    def _S3_approx(self, mu, U_app, V_app, S2_app):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        mu : Numpy array of shape (n_predict, n_samples)
+            Average of z across all ELMs.
+        U_app : Numpy array of shape (n_samples)
+            Average of the noise covariance matrices diagonal estimates.
+        V_app : Numpy array of shape (n_predict)
+            Averaged quadratic form in z,
+        S2_app : Numpy array of shape (n_predict, n_samples)
+            Approximate S2 estimate.
+
+        Returns
+        -------
+        S3 : Numpy array of shape (n_predict, n_samples)
+            Approximation of S3 estimate, see section 3.3.
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _S3_approx&#34;) 
+        M = self.n_estimators
+        muTUmu = np.einsum(&#39;ps, s, ps -&gt; p&#39;, mu, U_app, mu, optimize = &#39;greedy&#39;)
+        S3_app = M**2 * muTUmu - M*V_app - 2*(M-1)*S2_app
+        S3_app = S3_app / ((M-1) * (M-2))
+        
+        return S3_app    
+      
+    def heteroskedastic_variance(self, estimate=&#39;S3&#39;, approx=False, corrected_residuals=False):
+        &#39;&#39;&#39;
+        Compute a variance estimation at last predicted points assuming 
+        heteroskedasticity (non-constant noise variance).
+            
+        Parameters
+        ----------
+        estimate : string, optional
+            Estimate to use, &#34;naive&#34;, &#34;S1, S2&#34; or &#34;S3&#34;. The &#34;S3&#34; estimate 
+            is highly recommended, see remark below. Default is &#34;S3&#34;.
+        approx : bool, optional
+            Speed up computation at the expense of a slightly approximate variance 
+            estimation. Default is &#39;False&#39;.
+        corrected_residuals : bool, optional
+            If True, the corrected residuals used to compute HC3 are squared and
+            returned as noise estimates at training points. If False, the raw 
+            residuals are used. Default is &#39;False&#39;.
+            
+        Returns
+        -------
+        var_predict : numpy array of shape (n_samples)
+            Model variance estimation for y_predict.
+        noise_estimate : numpy array of shape (n_sample_train) 
+            Noise estimate at the training points.
+
+        Remarks
+        ------
+        The &#34;naive&#34; estimate was proposed in a proceeding of the 28th European 
+        Symposium on Artificial Neural Networks, Computational Intelligence and 
+        Machine Learning (ESANN 2020). This work motivated the Neurocomputing 
+        paper (see references below) in which the &#34;bias-reduced&#34; estimate was 
+        proposed. In particular, it was shown that the later as a lower bias and, 
+        therefore, was recommended. The &#34;naive estimate&#34; is still available for
+        comparison and reproducibility purposes only.
+            
+        References
+        ----------
+        F. Guignard, F. Amato and M. Kanevski. 
+        Uncertainty Quantification in Extreme Learning Machine:  
+        Analytical Developments, Variance Estimates and Confidence Intervals, 
+        Neurocomputing 456 (2021) 436-449.
+        
+        F. Guignard, M. Laib and M. Kanevski. 
+        Model Variance for Extreme Learning Machine,
+        ESANN (2020) 703-708.
+        
+        J.G. MacKinnon, H. White. Some heteroskedasticity-consistent 
+        covariance matrix estimators with improved finite sample properties, 
+        Journal of econometrics 29 (3) (1985) 305--325. 
+                    
+        &#39;&#39;&#39; 
+        # print(&#34;ELMEnsemble heteroskedastic_variance&#34;)                                     
+        H_pinvs, H_predict, residuals = self._collect()
+        Hs = self._collect_Hs()
+        
+        z = np.einsum(&#39;pnm, nsm -&gt; psm&#39;, H_predict, H_pinvs, optimize = &#39;greedy&#39;)
+        Pdiag = np.einsum(&#39;nsm, snm -&gt; nm&#39;, Hs, H_pinvs, optimize = &#39;greedy&#39;)
+        corr_res = residuals/(1-Pdiag)
+        
+        # Noise estimate
+        if corrected_residuals == False:
+            noise_estimate = np.square(residuals).mean(axis=1)       
+        elif corrected_residuals == True:
+            noise_estimate = np.square(corr_res).mean(axis=1)
+        else :
+            raise TypeError(&#34;Only booleans are allowed for the &#39;corrected_residuals&#39; argument&#34;)
+        
+        if estimate == &#39;naive&#39; :   # naive estimation from ESANN proceeding
+            mu = z.mean(axis=2)
+            if approx == False :
+                Sigma = self._Sigma_estim(corr_res)
+                nu = self._nu_estim(z, Sigma)
+            elif approx == True :
+                Omega = np.square(corr_res)  
+                nu = self._nu_approx(z, Omega)
+            else :
+                raise TypeError(&#34;Only booleans are allowed for the &#39;approx&#39; argument&#34;)
+            var1 = np.einsum(&#39;ps, ps -&gt; p&#39;, mu, nu, optimize = &#39;greedy&#39;)                    
+                
+        elif estimate == &#39;S1&#39; or estimate == &#39;S2&#39; or estimate == &#39;S3&#39;: # estimation from Neurocomupting paper
+            if approx == False :
+                Sigma = self._Sigma_estim(corr_res)
+                var1 = self._S1_estim(z, Sigma)                   #S1 estimate
+                if estimate != &#39;S1&#39;:
+                    mu = z.mean(axis=2)
+                    nu = self._nu_estim(z, Sigma)
+                    var1 = self._S2_estim(mu, nu, var1)           #S2 estimate
+                    if estimate != &#39;S2&#39; :
+                        U = Sigma.mean(axis=2)
+                        V = self._V_estim(z, U)
+                        var1 = self._S3_estim(mu, U, V, var1)     #S3 estimate                         
+            elif approx == True :                                 #Simplified Jackknife
+                Omega = np.square(corr_res)                       
+                var1 = self._S1_approx(z, Omega)                  #S1_app estimate
+                if estimate != &#39;S1&#39;:
+                    mu = z.mean(axis=2)
+                    nu_app = self._nu_approx(z, Omega)
+                    var1 = self._S2_estim(mu, nu_app, var1)       #S2_app estimate
+                    if estimate != &#39;S2&#39; :
+                        U_app = Omega.mean(axis = 1)    
+                        V_app = self._V_approx(z, U_app)
+                        var1 = self._S3_approx(mu, U_app, V_app, var1)  #S3_app estimate  
+            else :
+                raise TypeError(&#34;Only booleans are allowed for the &#39;approx&#39; argument&#34;)
+        
+        else :
+            raise TypeError(&#34;Only &#39;S1&#39;, &#39;S2&#39;, &#39;S3&#39; or &#39;naive&#39; are allowed for the &#39;estimate&#39; argument&#34;)
+        
+        # Compute model variance induced by the random weights and the total variance
+        var2 = self.y_var_/self.n_estimators
+        var_predict = var1 + var2
+            
+        return var_predict, noise_estimate    
+    
+class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin): 
+    &#39;&#39;&#39;
+    Instances of the ELMEnsembleRidge class are scikit-learn compatible estimators for regression 
+    based on ensemble of regularized Extreme Learning Machine estimators from the ELMRidge class.
+    This class provides estimation of model variance for the ensemble, under homoskedastic and 
+    heteroskedastic assumptions.
+
+    &#39;&#39;&#39;
+    
+    def __init__(self, n_estimators=20, n_neurons=100, alpha=1.0, 
+                 activation=&#39;logistic&#39;, weight_distr=&#39;uniform&#39;, weight_scl=1.0, 
+                 n_jobs=1, random_state=None):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        n_estimators : integer,
+            Number of ELM models in the ensemble. The default is 20.
+        n_neurons : integer,
+            Number of neurons of each model. The default is 100.
+        alpha : float, optional
+            Regularization strength, aka Tikhonov factor. The default is 1.0.
+        activation : string, optional
+            Activation function (&#39;logistic&#39; or &#39;tanh&#39;). The default is &#39;logistic&#39;.
+        weight_distr : string, optional
+            Distribution of weights (&#39;uniform&#39; or &#39;gaussian&#39;). 
+            The default is &#39;uniform&#39;. 
+        weight_scl : float, optional
+            Controle the scale of the weight distribution.
+            If weights are uniforms, they are drawn from [-weight_scl, weight_scl].
+            If weights are Gaussians, they are centred with standard deviation
+            equal to weight_scl. The default is 1.0.
+        n_jobs : integer,
+            Number of processors to use for the computation.
+        random_state : integer, optional
+            Random seed for reproductible results. The default is None.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        # print(&#34;ELMEnsembleRidge __init__&#34;)      
+        ELMEnsemble.__init__(self, n_estimators, n_neurons, activation, 
+                            weight_distr, weight_scl, n_jobs, random_state)  
+        self.alpha = alpha             
+
+                
+    def fit(self, X, y):
+        &#39;&#39;&#39;
+        Training for regularized ELM ensemble.
+        Initialize random hidden weights and compute output weights 
+        for all ELM models.
+        
+        Parameters
+        ----------
+        X : Numpy array of shape (n_sample_train, n_features)
+            Training data.
+        y : Numpy array of shape (n_sample_train)
+            Target values.
+
+        Returns
+        -------
+        Self.
+        
+        Reference
+        ---------
+        W. Deng, Q. Zheng, L. Chen,  
+        Regularized extreme learning machine, 
+        IEEE symposium on computational intelligence and data mining, 2009, pp. 389–395.
+        
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsembleRidge fit&#34;)                
+        self.check = X.shape
+        X, y = check_X_y(X, y)
+        
+        self.X_ = X
+        self.y_ = y
+        
+        # random_state variable treatment
+        if self.random_state == None :
+            random_states = [None] * self.n_estimators
+            random_states = np.array(random_states)
+        else :
+            np.random.seed(self.random_state)
+            random_states = np.random.randint(int(1e8), size = self.n_estimators)
+        
+        # multiple fitting
+        n_obs, n_feat = X.shape
+        self.estimators_ = [0] * self.n_estimators
+        for i in range(self.n_estimators):
+            elm = ELMRidge(n_neurons = self.n_neurons,
+                           alpha = self.alpha,
+                           activation = self.activation,
+                           weight_distr = self.weight_distr, 
+                           weight_scl = self.weight_scl,
+                           random_state = random_states[i])
+            elm.fit(X,y)
+            self.estimators_[i] = elm
+
+        return self
+  
+    def _collect(self):
+        &#39;&#39;&#39;
+        Collect H_alpha_, H_predict and residuals in each model
+
+        Returns
+        -------
+        H_alphas : numpy array of shape (n_neurons, n_samples, n_estimators)
+            Pseudo-inverses of hidden matrices.
+        H_predict : numpy array of shape (n_predicted_points, n_neurons, n_estimators)
+            Hidden matrices for all the predicted points.
+        residuals : numpy array of shape (n_samples, n_estimators)
+            Training residuals for all models.
+        &#39;&#39;&#39;
+        # print(&#34;ELMEnsembleRidge _collect&#34;) 
+        n_obs = self.X_.shape[0]
+        n_predict = self.X_predict_.shape[0]
+        N = self.n_neurons
+        M = self.n_estimators
+        
+        H_alphas = np.zeros((N, n_obs, M))
+        H_predict = np.zeros((n_predict, N, M))
+        residuals = np.zeros((n_obs, M))
+        
+        for i in range(M):   
+            elm = self.estimators_[i]
+            H_alphas[:, :, i] = elm.H_alpha_
+            H_predict[:, :, i] = elm._H_compute(self.X_predict_)
+            residuals[:, i] = elm.predict(self.X_) - self.y_
+            
+        return H_alphas, H_predict, residuals
+
+    def homoskedastic_variance(self, estimate=&#39;bias-reduced&#39;):
+        &#39;&#39;&#39;
+        Compute an homoskedastic variance estimation of the model at last predicted points.
+            
+        Parameters
+        ----------
+        estimate : string, optional
+            Estimate to use, &#39;naive&#39; or &#39;bias-reduced&#39;. The &#39;bias-reduced&#39; estimate 
+            is recommended, see remark below. Default is &#39;bias-reduced&#39;.
+
+        Returns
+        -------
+        var_predict : numpy array of shape (n_samples)
+            Model variance estimation for y_predict.
+        noise_estimate : float
+            Noise estimate.
+ 
+        Remarks
+        ------
+        The &#34;naive&#34; estimate was proposed in a proceeding of the 28th European 
+        Symposium on Artificial Neural Networks, Computational Intelligence and 
+        Machine Learning (ESANN 2020). This work motivated the Neurocomputing 
+        paper (see references below) in which the &#34;bias-reduced&#34; estimate was 
+        proposed. In particular, it was shown that the later as a lower bias and, 
+        therefore, was recommended. The &#34;naive estimate&#34; is still available for
+        comparison and reproducibility purposes only.
+            
+        References
+        ----------
+        F. Guignard, F. Amato and M. Kanevski. 
+        Uncertainty Quantification in Extreme Learning Machine:  
+        Analytical Developments, Variance Estimates and Confidence Intervals, 
+        Neurocomputing 456 (2021) 436-449.
+        
+        F. Guignard, M. Laib and M. Kanevski. 
+        Model Variance for Extreme Learning Machine,
+        ESANN (2020) 703-708.
+            
+        &#39;&#39;&#39; 
+        # print(&#34;ELMEnsembleRidge homoskedastic_variance&#34;)                 
+        n_obs = self.X_.shape[0]
+        H_alphas, H_predict, residuals = self._collect()
+        Hs = self._collect_Hs()
+        Hs = Hs.transpose(2,0,1)
+        eigenHTHs = np.square(np.linalg.svd(Hs, full_matrices= False, compute_uv=False, hermitian=False))
+        eigenP = (eigenHTHs/(eigenHTHs + self.alpha))
+        eigenP2 = np.square(eigenP)
+        self.gamma_ = (2*eigenP - eigenP2).sum() / self.n_estimators
+        
+        ddof = n_obs - self.gamma_ 
+                
+        # Compute noise estimation
+        ARSS = self._AvgRSS(residuals)
+        noise = ARSS / ddof
+        
+        #Compute model variance induced by noise
+        muTmu = self._muTmu_estim(H_alphas, H_predict, estimate)
+        var1 = noise * muTmu
+        
+        # Compute model variance induced by the random weights
+        var2 = self.y_var_/self.n_estimators
+
+        var_predict = var1 + var2 
+            
+        return var_predict, noise 
+     
+    
+
+    
+class ELMEnsembleRidgeCV(ELMEnsembleRidge, BaseEstimator, RegressorMixin):
+    &#39;&#39;&#39;
+    Instances of the ELMEnsembleRidgeCV class are scikit-learn compatible estimators for regression 
+    based on ensemble of regularized Extreme Learning Machine estimators from the ELMRidgeCV class.
+    This class provides estimation of model variance for the ensemble, under homoskedastic and 
+    heteroskedastic assumptions.
+
+    &#39;&#39;&#39;
+    
+    def __init__(self, n_estimators=20, n_neurons=100, alphas=np.array([0.1, 1.0, 10]), 
+                 activation=&#39;logistic&#39;, weight_distr=&#39;uniform&#39;, weight_scl=1.0, 
+                 n_jobs=1, random_state=None):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        n_estimators : integer,
+            Number of ELM models in the ensemble. The default is 20.
+        n_neurons : integer,
+            Number of neurons of each model. The default is 100.
+        alphas : ndarray, optional
+            Array of alpha&#39;s values to try. Regularization strength, 
+            aka Tikhonov factor. The default is np.array([0.1, 1.0, 10]).
+        activation : string, optional
+            Activation function (&#39;logistic&#39; or &#39;tanh&#39;). The default is &#39;logistic&#39;.
+        weight_distr : string, optional
+            Distribution of weights (&#39;uniform&#39; or &#39;gaussian&#39;). 
+            The default is &#39;uniform&#39;. 
+        weight_scl : float, optional
+            Controle the scale of the weight distribution.
+            If weights are uniforms, they are drawn from [-weight_scl, weight_scl].
+            If weights are Gaussians, they are centred with standard deviation
+            equal to weight_scl. The default is 1.0.
+        n_jobs : integer,
+            Number of processors to use for the computation.
+        random_state : integer, optional
+            Random seed for reproductible results. The default is None.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;        
+        # print(&#34;ELMEnsembleRidgeCV __init__&#34;)
+        ELMEnsemble.__init__(self, n_estimators, n_neurons, activation, 
+                             weight_distr, weight_scl, n_jobs, random_state)  
+        self.alphas = alphas         
+   
+    
+    def fit(self, X, y):
+        &#39;&#39;&#39;
+        Training for regularized ELM ensemble, with Generalized Cross Validation.
+        Initialize random hidden weights and compute output weights 
+        for all ELM models.
+        
+        Parameters
+        ----------
+        X : Numpy array of shape (n_sample_train, n_features)
+            Training data.
+        y : Numpy array of shape (n_sample_train)
+            Target values.
+
+        Returns
+        -------
+        Self.
+        
+        References
+        ----------
+        W. Deng, Q. Zheng, L. Chen,  
+        Regularized extreme learning machine, 
+        IEEE symposium on computational intelligence and data mining, 2009, pp. 389–395.
+        
+        G. H. Golub, M. Heath, G. Wahba, 
+        Generalized cross-validation as a method for choosing a good ridge parameter,
+        Technometrics 21 (2) (1979) 215–223.
+        
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsembleRidgeCV fit&#34;)        
+        self.check = X.shape
+        X, y = check_X_y(X, y)
+        
+        self.X_ = X
+        self.y_ = y
+        
+        # random_state variable treatment
+        if self.random_state == None :
+            random_states = [None] * self.n_estimators
+            random_states = np.array(random_states)
+        else :
+            np.random.seed(self.random_state)
+            random_states = np.random.randint(int(1e8), size = self.n_estimators)
+        
+        # multiple fitting
+        n_obs, n_feat = X.shape
+        self.estimators_ = [0] * self.n_estimators
+        for i in range(self.n_estimators):
+            elm = ELMRidgeCV(n_neurons = self.n_neurons,
+                             alphas = self.alphas,
+                             activation = self.activation,
+                             weight_distr = self.weight_distr, 
+                             weight_scl = self.weight_scl,
+                             random_state = random_states[i])
+            elm.fit(X,y)
+            self.estimators_[i] = elm
+
+        return self    
+    
+    def _collect_alphas_opt(self):
+        &#39;&#39;&#39;
+        Collect alpha_opt in each model. Complete the _collect() function for the
+        homoskedastic GCV case.
+
+        Returns
+        -------
+        alphas_opt : numpy array of shape (n_estimators)
+             alpha_opt for each model of the ensemble.
+
+        &#39;&#39;&#39;
+        # print(&#34;ELMEnsembleRidgeCV _collect_alphas_opt&#34;)  
+        M = self.n_estimators
+        
+        alphas_opt = np.zeros((M))  
+        for i in range(M):   
+            elm = self.estimators_[i]
+            alphas_opt[i] = elm.alpha_opt  
+            
+        return alphas_opt
+
+    def homoskedastic_variance(self, estimate=&#39;bias-reduced&#39;):
+        &#39;&#39;&#39;
+        Compute an homoskedastic variance estimation of the model at last predicted points.
+            
+        Parameters
+        ----------
+        estimate : string, optional
+            Estimate to use, &#39;naive&#39; or &#39;bias-reduced&#39;. The &#39;bias-reduced&#39; estimate 
+            is recommended, see remark below. Default is &#39;bias-reduced&#39;.
+
+        Returns
+        -------
+        var_predict : numpy array of shape (n_samples)
+            Model variance estimation for y_predict.
+        noise_estimate : numpy.float
+            Noise estimate.
+ 
+        Remarks
+        ------
+        The &#34;naive&#34; estimate was proposed in a proceeding of the 28th European 
+        Symposium on Artificial Neural Networks, Computational Intelligence and 
+        Machine Learning (ESANN 2020). This work motivated the Neurocomputing 
+        paper (see references below) in which the &#34;bias-reduced&#34; estimate was 
+        proposed. In particular, it was shown that the later as a lower bias and, 
+        therefore, was recommended. The &#34;naive estimate&#34; is still available for
+        comparison and reproducibility purposes only.
+            
+        References
+        ----------
+        F. Guignard, F. Amato and M. Kanevski. 
+        Uncertainty Quantification in Extreme Learning Machine:  
+        Analytical Developments, Variance Estimates and Confidence Intervals, 
+        Neurocomputing 456 (2021) 436-449.
+        
+        F. Guignard, M. Laib and M. Kanevski. 
+        Model Variance for Extreme Learning Machine,
+        ESANN (2020) 703-708.
+            
+        &#39;&#39;&#39; 
+        # print(&#34;ELMEnsembleRidgeCV homoskedastic_variance&#34;)                 
+        n_obs = self.X_.shape[0]
+        H_alphas, H_predict, residuals = self._collect()
+        Hs = self._collect_Hs()          
+        Hs = Hs.transpose(2,0,1)
+        alphas_opt = self._collect_alphas_opt()                                 ### change from non GCV case
+        alphas_opt = alphas_opt.reshape((alphas_opt.shape[0], 1))               ### change from non GCV case
+        alphas_opt = alphas_opt.repeat(self.n_neurons, axis = 1)                ### change from non GCV case
+        eigenHTHs = np.square(np.linalg.svd(Hs, full_matrices= False, compute_uv=False, hermitian=False))
+        eigenP = (eigenHTHs/(eigenHTHs + alphas_opt))                           ### change from non GCV case
+        eigenP2 = np.square(eigenP)
+        self.gamma_ = (2*eigenP - eigenP2).sum() / self.n_estimators
+        
+        ddof = n_obs - self.gamma_ 
+                
+        # Compute noise estimation
+        ARSS = self._AvgRSS(residuals)
+        noise = ARSS / ddof
+        
+        #Compute model variance induced by noise
+        muTmu = self._muTmu_estim(H_alphas, H_predict, estimate)
+        var1 = noise * muTmu
+        
+        # Compute model variance induced by the random weights
+        var2 = self.y_var_/self.n_estimators
+
+        var_predict = var1 + var2 
+            
+        return var_predict, noise 
+
+# Future improvement
+# This homoskedastic_variance function could be re-written here : 
+# 1) Indeed, the svd is done twice when this class is used, because the homoskedastic_variance 
+#    function is inherited from the class ELMEnsembleRidge, where the svd is not done 
+#    during the fitting process. It could be done one time and store during the 
+#    fitting process of the ELMEnsembleRidgeCV and the ELMRidgeCV classes (elm_estimator.py).
+# 2) The writing could be optimize, as there is not too much changes comparing to 
+#    the ELMEnsembleRidge corresponding function.        
+# 3) Eventually put the alphas_opt in atribute during the fitting process.</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="UncELMe.elm_ensemble.ELMEnsemble"><code class="flex name class">
+<span>class <span class="ident">ELMEnsemble</span></span>
+<span>(</span><span>n_estimators=20, n_neurons=100, activation='logistic', weight_distr='uniform', weight_scl=1.0, n_jobs=1, random_state=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Instances of the ELMEnsemble class are scikit-learn compatible estimators for regression
+based on ensemble of Extreme Learning Machine estimators from the ELM class.
+This class provides estimation of model variance for the ensemble, under homoskedastic and
+heteroskedastic assumptions.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>n_estimators</code></strong> :&ensp;<code>integer,</code></dt>
+<dd>Number of ELM models in the ensemble. The default is 20.</dd>
+<dt><strong><code>n_neurons</code></strong> :&ensp;<code>integer,</code></dt>
+<dd>Number of neurons of each model. The default is 100.</dd>
+<dt><strong><code>activation</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>Activation function ('logistic' or 'tanh'). The default is 'logistic'.</dd>
+<dt><strong><code>weight_distr</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>Distribution of weights ('uniform' or 'gaussian').
+The default is 'uniform'.</dd>
+<dt><strong><code>weight_scl</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>Control the scale of the weight distribution.
+If weights are uniforms, they are drawn from [-weight_scl, weight_scl].
+If weights are Gaussians, they are centred with standard deviation
+equal to weight_scl. The default is 1.0.</dd>
+<dt><strong><code>n_jobs</code></strong> :&ensp;<code>integer,</code></dt>
+<dd>Number of processors to use for the computation.</dd>
+<dt><strong><code>random_state</code></strong> :&ensp;<code>integer</code>, optional</dt>
+<dd>Random seed for reproductible results. The default is None.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ELMEnsemble(BaseEstimator, RegressorMixin):
+    &#39;&#39;&#39;
+    Instances of the ELMEnsemble class are scikit-learn compatible estimators for regression 
+    based on ensemble of Extreme Learning Machine estimators from the ELM class.
+    This class provides estimation of model variance for the ensemble, under homoskedastic and 
+    heteroskedastic assumptions.
+
+    &#39;&#39;&#39;
+    
+    def __init__(self, n_estimators=20, n_neurons=100, 
+                 activation=&#39;logistic&#39;, weight_distr=&#39;uniform&#39;, weight_scl=1.0, 
+                 n_jobs=1, random_state=None):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        n_estimators : integer,
+            Number of ELM models in the ensemble. The default is 20.
+        n_neurons : integer,
+            Number of neurons of each model. The default is 100.
+        activation : string, optional
+            Activation function (&#39;logistic&#39; or &#39;tanh&#39;). The default is &#39;logistic&#39;.
+        weight_distr : string, optional
+            Distribution of weights (&#39;uniform&#39; or &#39;gaussian&#39;). 
+            The default is &#39;uniform&#39;. 
+        weight_scl : float, optional
+            Control the scale of the weight distribution.
+            If weights are uniforms, they are drawn from [-weight_scl, weight_scl].
+            If weights are Gaussians, they are centred with standard deviation
+            equal to weight_scl. The default is 1.0.
+        n_jobs : integer,
+            Number of processors to use for the computation.
+        random_state : integer, optional
+            Random seed for reproductible results. The default is None.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        # print(&#34;ELMEnsemble __init__&#34;)
+        self.n_estimators = n_estimators
+        self.n_neurons = n_neurons
+        self.activation = activation
+        self.weight_distr = weight_distr
+        self.weight_scl = weight_scl              
+        self.n_jobs = n_jobs                        ## to parallelize
+        self.random_state = random_state
+        
+    def fit(self, X, y):
+        &#39;&#39;&#39;
+        Training for ELM ensemble.
+        Initialize random hidden weights and compute output weights 
+        for all ELM models.
+        
+        Parameters
+        ----------
+        X : Numpy array of shape (n_sample_train, n_features)
+            Training data.
+        y : Numpy array of shape (n_sample_train)
+            Target values.
+
+        Returns
+        -------
+        Self.
+        
+        Reference
+        ---------
+        G.-B. Huang, Q.-Y. Zhu, C.-K. Siew, 
+        Extreme learning machine: theory and applications, 
+        Neurocomputing 70 (1-3) (2006) 489–501.  
+        
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble fit&#34;)                
+        self.check = X.shape
+        X, y = check_X_y(X, y)
+        
+        self.X_ = X
+        self.y_ = y
+        
+        # random_state variable treatment
+        if self.random_state == None :
+            random_states = [None] * self.n_estimators
+            random_states = np.array(random_states)
+        else :
+            np.random.seed(self.random_state)
+            random_states = np.random.randint(int(1e8), size = self.n_estimators)
+        
+        # multiple fitting
+        n_obs, n_feat = X.shape
+        self.estimators_ = [0] * self.n_estimators
+        for i in range(self.n_estimators):
+            elm = ELM(n_neurons = self.n_neurons,
+                      activation = self.activation,
+                      weight_distr = self.weight_distr, 
+                      weight_scl = self.weight_scl,
+                      random_state = random_states[i])
+            elm.fit(X,y)
+            self.estimators_[i] = elm
+
+        return self
+    
+    def predict(self, X_predict):
+        &#39;&#39;&#39;
+        Averaged prediction of ELM ensemble.
+        
+        Parameters
+        ----------
+        X_predict : Numpy array of shape (n_samples, n_features)
+            Input data to predict.
+
+        Returns
+        -------
+        y_predict : Numpy array of shape (n_samples)
+            Predicted output
+
+        &#39;&#39;&#39; 
+        # print(&#34;ELMEnsemble predict&#34;)                         
+        check_is_fitted(self, [&#39;X_&#39;, &#39;y_&#39;])
+        X_predict = check_array(X_predict)
+        
+        self.X_predict_ = X_predict
+        
+        y_predict = np.zeros((X_predict.shape[0], self.n_estimators))
+        for i in range(self.n_estimators):
+             y_predict[:,i] = self.estimators_[i].predict(X_predict)
+        
+        self.y_var_ = y_predict.var(axis = 1, ddof = 1)   
+        y_predict_avg = y_predict.mean(axis = 1)    
+        
+        return y_predict_avg
+  
+    def _collect(self):
+        &#39;&#39;&#39;
+        Collect H_pinv_, H_predict and residuals in each model
+
+        Returns
+        -------
+        H_pinvs : numpy array of shape (n_neurons, n_samples, n_estimators)
+            Pseudo-inverses of hidden matrices.
+        H_predict : numpy array of shape (n_predicted_points, n_neurons, n_estimators)
+            Hidden matrices for all the predicted points.
+        residuals : numpy array of shape (n_samples, n_estimators)
+            Training residuals for all models.
+        &#39;&#39;&#39;
+        # print(&#34;ELMEnsemble _collect&#34;) 
+        n_obs = self.X_.shape[0]
+        n_predict = self.X_predict_.shape[0]
+        N = self.n_neurons
+        M = self.n_estimators
+        
+        H_pinvs = np.zeros((N, n_obs, M))
+        H_predict = np.zeros((n_predict, N, M))
+        residuals = np.zeros((n_obs, M))
+        
+        for i in range(M):   
+            elm = self.estimators_[i]
+            H_pinvs[:, :, i] = elm.H_pinv_
+            H_predict[:, :, i] = elm._H_compute(self.X_predict_)
+            residuals[:, i] = elm.predict(self.X_) - self.y_
+            
+        return H_pinvs, H_predict, residuals
+    
+    def _AvgRSS(self, residuals):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        residuals : Numpy array of shape (n_samples, n_estimators)
+            Training residuals for all ELMs. 
+
+        Returns
+        -------
+        ARSS : Numpy array of shape (n_predict, n_samples)
+            Residual sum of squares averaged over all ELMs.
+            
+        &#39;&#39;&#39;
+        # print(&#34;ELMEnsemble _AvgRSS&#34;) 
+        sq_residuals = np.square(residuals)
+        RSS = sq_residuals.sum(axis=0)
+        ARSS = RSS.mean()
+        
+        return ARSS    
+    
+    def _muTmu_estim(self, H_pinvs, H_predict, estimate):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        H_pinvs : Numpy array of shape (n_neurons, n_samples, n_estimators)
+            Pseudoinverse matrices for all ELMs. (or H_alphas in the regularized case)
+        H_predict : Numpy array of shape (n_predict, n_neurons, n_estimators)
+            Hidden vectors at all predicted points for all ELMs.
+        estimate : string, optional
+            Estimate to use, &#34;naive&#34; or &#34;bias-reduced&#34;.
+
+        Returns
+        -------
+        muTmu : Numpy array of shape (n_predict)
+            Unbiased estimate of the squared norm of mu
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _muTmu_estim&#34;) 
+        N = self.n_estimators
+        
+        z = np.einsum(&#39;pnm, nsm -&gt; psm&#39;, H_predict, H_pinvs, optimize = &#39;greedy&#39;)
+        mu = z.mean(axis=2)
+    
+        muTmu = np.einsum(&#39;ps, ps -&gt; p &#39;, mu, mu)
+        if estimate == &#39;bias-reduced&#39;:
+            muTmu *= N/(N-1)
+            quad_terms = np.einsum(&#39;psm, psm -&gt; p &#39;, z, z)
+            muTmu += - quad_terms/(N*(N-1))
+        elif estimate == &#39;naive&#39; :
+            None
+        else :
+            raise TypeError(&#34;Only &#39;bias-reduced&#39; or &#39;naive&#39; are allowed for the &#39;estimate&#39; argument&#34;)
+            
+        return muTmu
+    
+    def homoskedastic_variance(self, estimate = &#39;bias-reduced&#39;):
+        &#39;&#39;&#39;
+        Compute an homoskedastic variance estimation of the model at last predicted points.
+            
+        Parameters
+        ----------
+        estimate : string, optional
+            Estimate to use, &#34;naive&#34; or &#34;bias-reduced&#34;. The &#34;bias-reduced&#34; estimate 
+            is highly recommended, see remark below. Default is &#34;bias-reduced&#34;.
+        
+        Returns
+        -------
+        var_predict : numpy array of shape (n_samples)
+            Model variance estimation for y_predict.
+        noise_estimate : float
+            Noise estimate.
+            
+        Remarks
+        ------
+        The &#34;naive&#34; estimate was proposed in a proceeding of the 28th European 
+        Symposium on Artificial Neural Networks, Computational Intelligence and 
+        Machine Learning (ESANN 2020). This work motivated the Neurocomputing 
+        paper (see references below) in which the &#34;bias-reduced&#34; estimate was 
+        proposed. In particular, it was shown that the later as a lower bias and, 
+        therefore, was recommended. The &#34;naive estimate&#34; is still available for
+        comparison and reproducibility purposes only.
+            
+        References
+        ----------
+        F. Guignard, F. Amato and M. Kanevski. 
+        Uncertainty Quantification in Extreme Learning Machine:  
+        Analytical Developments, Variance Estimates and Confidence Intervals, 
+        Neurocomputing 456 (2021) 436-449.
+        
+        F. Guignard, M. Laib and M. Kanevski. 
+        Model Variance for Extreme Learning Machine,
+        ESANN (2020) 703-708.
+
+        &#39;&#39;&#39; 
+        # print(&#34;ELMEnsemble homoskedastic_variance&#34;)                       
+        n_obs = self.X_.shape[0]
+        H_pinvs, H_predict, residuals = self._collect()
+        
+        # Compute noise estimation
+        ddof = n_obs - self.n_neurons
+        ARSS = self._AvgRSS(residuals)
+        noise = ARSS / ddof
+        
+        #Compute model variance induced by noise
+        muTmu = self._muTmu_estim(H_pinvs, H_predict, estimate)
+        var1 = noise * muTmu
+        
+        # Compute model variance induced by the random weights
+        var2 = self.y_var_/self.n_estimators
+
+        var_predict = var1 + var2 
+            
+        return var_predict, noise 
+  
+    def _collect_Hs(self):
+        &#39;&#39;&#39;
+        Collect Hs in each model. Complete the _collect() function for the
+        heteroskedastic case.
+
+        Returns
+        -------
+        Hs : numpy array of shape (n_neurons, n_samples, n_estimators)
+             Hidden matrices.
+
+        &#39;&#39;&#39;
+        # print(&#34;ELMEnsemble _collect_Hs&#34;)  
+        n_obs = self.X_.shape[0]
+        N = self.n_neurons
+        M = self.n_estimators
+        
+        Hs = np.zeros((n_obs, N, M))  
+        for i in range(M):   
+            elm = self.estimators_[i]
+            Hs[:, :, i] = elm.H_  
+            
+        return Hs
+    
+    def _Sigma_estim(self, corr_res):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        corr_res : Numpy array of shape (n_samples, n_estimators)
+            Training corrected residuals for all ELMs. 
+
+        Returns
+        -------
+        Sigma : Numpy array of shape (n_samples, n_samples, n_estimators)
+            Estimates of noise covariance matrices for all ELMs,
+            based on the ordinary Jackknife estimate (HC3) of the 
+            output weights covariance matrix. 
+            
+        &#39;&#39;&#39; 
+        # print(&#34;ELMEnsemble _Sigma_estim&#34;)  
+        n_obs = corr_res.shape[0]
+        rrT = np.einsum(&#39;im, jm -&gt; ijm&#39;, corr_res, corr_res, optimize = &#39;greedy&#39;)
+        Sigma = np.zeros(rrT.shape)
+        for m in range(Sigma.shape[2]):
+            Sigma[:,:,m] = np.diag(np.square(corr_res[:, m]))
+        Sigma += -rrT/n_obs
+        Sigma *= ((n_obs-1)/n_obs)
+        
+        return Sigma
+    
+    def _S1_estim(self, z, Sigma):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        z : Numpy array of shape (n_predict, n_samples, n_estimators)
+            &#34;z&#34; vectors at all predicted points for all ELMs.
+        Sigma : Numpy matrix of shape (n_samples, n_samples, n_estimators)
+            Estimates of noise covariance matrices for all ELMs.
+
+        Returns
+        -------
+        S1 : Numpy matrix of shape (n_predict, n_samples)
+            S1 estimate, see section 3.3.
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _S1_estim&#34;)  
+        S1 = np.einsum(&#39;pim, ijm, pjm -&gt; p&#39;, z, Sigma, z, optimize = &#39;greedy&#39;)
+        S1 = S1 /self.n_estimators
+        
+        return S1 
+    
+    def _nu_estim(self, z, Sigma):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        z : Numpy array of shape (n_predict, n_samples, n_estimators)
+            &#34;z&#34; vectors at all predicted points for all ELMs.
+        Sigma : Numpy array of shape (n_samples, n_samples, n_estimators)
+            Estimates of noise covariance matrices for all ELMs.
+            
+        Returns
+        -------
+        nu : Numpy array of shape (n_predict, n_samples)
+            nu estimate, see section 3.3.
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _nu_estim&#34;) 
+        nu = np.einsum(&#39;pim, ijm -&gt; pj&#39;, z, Sigma, optimize = &#39;greedy&#39;)
+        nu = nu / self.n_estimators
+        return nu
+    
+    def _S2_estim(self, mu, nu, S1):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        mu : Numpy array of shape (n_predict, n_samples)
+            Average of z across all ELMs.
+        nu : Numpy array of shape (n_predict, n_samples)
+            nu estimate, see section 3.3.
+        S1 : Numpy array of shape (n_predict, n_samples)
+            S1 estimate.
+
+        Returns
+        -------
+        S2 : Numpy array of shape (n_predict, n_samples)
+            S2 estimate, see section 3.3.
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _S2_estim&#34;) 
+        nuTmu = np.einsum(&#39;ps, ps -&gt; p&#39;, mu, nu, optimize = &#39;greedy&#39;)
+        S2 = self.n_estimators * nuTmu - S1
+        S2 = S2 / (self.n_estimators - 1)
+        
+        return S2
+    
+    def _V_estim(self, z, U):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        z : Numpy array of shape (n_predict, n_samples, n_estimators)
+            &#34;z&#34; vectors at all predicted points for all ELMs.
+        U : Numpy array of shape (n_samples, n_samples)
+            Average of the noise covariance matrices estimates.
+
+        Returns
+        -------
+        V : Numpy array of shape (n_predict)
+            Averaged quadratic form in z, see section 3.3.
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _V_estim&#34;) 
+        V = np.einsum(&#39;pim, ij, pjm -&gt; p&#39;, z, U, z, optimize = &#39;greedy&#39;)
+        V = V /self.n_estimators
+        
+        return V 
+
+    def _S3_estim(self, mu, U, V, S2):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        mu : Numpy array of shape (n_predict, n_samples)
+            Average of z across all ELMs.
+        U : Numpy array of shape (n_samples, n_samples)
+            Average of the noise covariance matrices estimates.
+        V : Numpy array of shape (n_predict)
+            Averaged quadratic form in z,
+        S2 : Numpy array of shape (n_predict, n_samples)
+            S2 estimate.
+
+        Returns
+        -------
+        S3 : Numpy array of shape (n_predict, n_samples)
+            S3 estimate, see section 3.3.
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _S3_estim&#34;) 
+        muTUmu = np.einsum(&#39;pi, ij, pj -&gt; p&#39;, mu, U, mu, optimize = &#39;greedy&#39;)
+        S3 = self.n_estimators**2 * muTUmu - self.n_estimators*V - 2*(self.n_estimators-1)*S2
+        S3 = S3 / ((self.n_estimators - 1) * (self.n_estimators - 2))
+        
+        return S3
+    
+    def _S1_approx(self, z, Omega):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        z : Numpy array of shape (n_predict, n_samples, n_estimators)
+            &#34;z&#34; vectors at all predicted points for all ELMs.
+        Omega : Numpy array of shape (n_samples, n_estimators)
+            Estimates of noise covariance matrix diagonals for all ELMs.
+
+        Returns
+        -------
+        S1_app : Numpy array of shape (n_predict, n_samples)
+            Approximation of S1 estimate, see section 3.3.
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _S1_approx&#34;) 
+        S1_app = np.einsum(&#39;psm, sm, psm -&gt; p&#39;, z, Omega, z, optimize = &#39;greedy&#39;)
+        S1_app = S1_app/self.n_estimators
+        
+        return S1_app
+              
+    def _nu_approx(self, z, Omega):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        z : Numpy array of shape (n_predict, n_samples, n_estimators)
+            &#34;z&#34; vectors at all predicted points for all ELMs.
+        Omega : Numpy array of shape (n_samples, n_estimators)
+            Estimates of noise covariance matrix diagonals for all ELMs.
+            
+        Returns
+        -------
+        nu_app : Numpy array of shape (n_predict, n_samples)
+            approximation of nu estimate, see section 3.3.
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _nu_approx&#34;) 
+        nu_app = np.einsum(&#39;psm, sm -&gt; ps&#39;, z, Omega, optimize = &#39;greedy&#39;)
+        nu_app = nu_app / self.n_estimators
+        return nu_app
+
+    def _V_approx(self, z, U_app):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        z : Numpy array of shape (n_predict, n_samples, n_estimators)
+            &#34;z&#34; vectors at all predicted points for all ELMs.
+        U : Numpy array of shape (n_samples)
+            Average of the noise covariance matrices diagonal estimates.
+
+        Returns
+        -------
+        V_app : Numpy array of shape (n_predict)
+            Averaged quadratic form in z, see section 3.3.
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _V_approx&#34;) 
+        V_app = np.einsum(&#39;psm, s, psm -&gt; p&#39;, z, U_app, z, optimize = &#39;greedy&#39;)
+        V_app = V_app /self.n_estimators
+        
+        return V_app 
+
+    def _S3_approx(self, mu, U_app, V_app, S2_app):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        mu : Numpy array of shape (n_predict, n_samples)
+            Average of z across all ELMs.
+        U_app : Numpy array of shape (n_samples)
+            Average of the noise covariance matrices diagonal estimates.
+        V_app : Numpy array of shape (n_predict)
+            Averaged quadratic form in z,
+        S2_app : Numpy array of shape (n_predict, n_samples)
+            Approximate S2 estimate.
+
+        Returns
+        -------
+        S3 : Numpy array of shape (n_predict, n_samples)
+            Approximation of S3 estimate, see section 3.3.
+            
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsemble _S3_approx&#34;) 
+        M = self.n_estimators
+        muTUmu = np.einsum(&#39;ps, s, ps -&gt; p&#39;, mu, U_app, mu, optimize = &#39;greedy&#39;)
+        S3_app = M**2 * muTUmu - M*V_app - 2*(M-1)*S2_app
+        S3_app = S3_app / ((M-1) * (M-2))
+        
+        return S3_app    
+      
+    def heteroskedastic_variance(self, estimate=&#39;S3&#39;, approx=False, corrected_residuals=False):
+        &#39;&#39;&#39;
+        Compute a variance estimation at last predicted points assuming 
+        heteroskedasticity (non-constant noise variance).
+            
+        Parameters
+        ----------
+        estimate : string, optional
+            Estimate to use, &#34;naive&#34;, &#34;S1, S2&#34; or &#34;S3&#34;. The &#34;S3&#34; estimate 
+            is highly recommended, see remark below. Default is &#34;S3&#34;.
+        approx : bool, optional
+            Speed up computation at the expense of a slightly approximate variance 
+            estimation. Default is &#39;False&#39;.
+        corrected_residuals : bool, optional
+            If True, the corrected residuals used to compute HC3 are squared and
+            returned as noise estimates at training points. If False, the raw 
+            residuals are used. Default is &#39;False&#39;.
+            
+        Returns
+        -------
+        var_predict : numpy array of shape (n_samples)
+            Model variance estimation for y_predict.
+        noise_estimate : numpy array of shape (n_sample_train) 
+            Noise estimate at the training points.
+
+        Remarks
+        ------
+        The &#34;naive&#34; estimate was proposed in a proceeding of the 28th European 
+        Symposium on Artificial Neural Networks, Computational Intelligence and 
+        Machine Learning (ESANN 2020). This work motivated the Neurocomputing 
+        paper (see references below) in which the &#34;bias-reduced&#34; estimate was 
+        proposed. In particular, it was shown that the later as a lower bias and, 
+        therefore, was recommended. The &#34;naive estimate&#34; is still available for
+        comparison and reproducibility purposes only.
+            
+        References
+        ----------
+        F. Guignard, F. Amato and M. Kanevski. 
+        Uncertainty Quantification in Extreme Learning Machine:  
+        Analytical Developments, Variance Estimates and Confidence Intervals, 
+        Neurocomputing 456 (2021) 436-449.
+        
+        F. Guignard, M. Laib and M. Kanevski. 
+        Model Variance for Extreme Learning Machine,
+        ESANN (2020) 703-708.
+        
+        J.G. MacKinnon, H. White. Some heteroskedasticity-consistent 
+        covariance matrix estimators with improved finite sample properties, 
+        Journal of econometrics 29 (3) (1985) 305--325. 
+                    
+        &#39;&#39;&#39; 
+        # print(&#34;ELMEnsemble heteroskedastic_variance&#34;)                                     
+        H_pinvs, H_predict, residuals = self._collect()
+        Hs = self._collect_Hs()
+        
+        z = np.einsum(&#39;pnm, nsm -&gt; psm&#39;, H_predict, H_pinvs, optimize = &#39;greedy&#39;)
+        Pdiag = np.einsum(&#39;nsm, snm -&gt; nm&#39;, Hs, H_pinvs, optimize = &#39;greedy&#39;)
+        corr_res = residuals/(1-Pdiag)
+        
+        # Noise estimate
+        if corrected_residuals == False:
+            noise_estimate = np.square(residuals).mean(axis=1)       
+        elif corrected_residuals == True:
+            noise_estimate = np.square(corr_res).mean(axis=1)
+        else :
+            raise TypeError(&#34;Only booleans are allowed for the &#39;corrected_residuals&#39; argument&#34;)
+        
+        if estimate == &#39;naive&#39; :   # naive estimation from ESANN proceeding
+            mu = z.mean(axis=2)
+            if approx == False :
+                Sigma = self._Sigma_estim(corr_res)
+                nu = self._nu_estim(z, Sigma)
+            elif approx == True :
+                Omega = np.square(corr_res)  
+                nu = self._nu_approx(z, Omega)
+            else :
+                raise TypeError(&#34;Only booleans are allowed for the &#39;approx&#39; argument&#34;)
+            var1 = np.einsum(&#39;ps, ps -&gt; p&#39;, mu, nu, optimize = &#39;greedy&#39;)                    
+                
+        elif estimate == &#39;S1&#39; or estimate == &#39;S2&#39; or estimate == &#39;S3&#39;: # estimation from Neurocomupting paper
+            if approx == False :
+                Sigma = self._Sigma_estim(corr_res)
+                var1 = self._S1_estim(z, Sigma)                   #S1 estimate
+                if estimate != &#39;S1&#39;:
+                    mu = z.mean(axis=2)
+                    nu = self._nu_estim(z, Sigma)
+                    var1 = self._S2_estim(mu, nu, var1)           #S2 estimate
+                    if estimate != &#39;S2&#39; :
+                        U = Sigma.mean(axis=2)
+                        V = self._V_estim(z, U)
+                        var1 = self._S3_estim(mu, U, V, var1)     #S3 estimate                         
+            elif approx == True :                                 #Simplified Jackknife
+                Omega = np.square(corr_res)                       
+                var1 = self._S1_approx(z, Omega)                  #S1_app estimate
+                if estimate != &#39;S1&#39;:
+                    mu = z.mean(axis=2)
+                    nu_app = self._nu_approx(z, Omega)
+                    var1 = self._S2_estim(mu, nu_app, var1)       #S2_app estimate
+                    if estimate != &#39;S2&#39; :
+                        U_app = Omega.mean(axis = 1)    
+                        V_app = self._V_approx(z, U_app)
+                        var1 = self._S3_approx(mu, U_app, V_app, var1)  #S3_app estimate  
+            else :
+                raise TypeError(&#34;Only booleans are allowed for the &#39;approx&#39; argument&#34;)
+        
+        else :
+            raise TypeError(&#34;Only &#39;S1&#39;, &#39;S2&#39;, &#39;S3&#39; or &#39;naive&#39; are allowed for the &#39;estimate&#39; argument&#34;)
+        
+        # Compute model variance induced by the random weights and the total variance
+        var2 = self.y_var_/self.n_estimators
+        var_predict = var1 + var2
+            
+        return var_predict, noise_estimate    </code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>sklearn.base.BaseEstimator</li>
+<li>sklearn.base.RegressorMixin</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="UncELMe.elm_ensemble.ELMEnsembleRidge" href="#UncELMe.elm_ensemble.ELMEnsembleRidge">ELMEnsembleRidge</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="UncELMe.elm_ensemble.ELMEnsemble.fit"><code class="name flex">
+<span>def <span class="ident">fit</span></span>(<span>self, X, y)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Training for ELM ensemble.
+Initialize random hidden weights and compute output weights
+for all ELM models.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>X</code></strong> :&ensp;<code>Numpy array</code> of <code>shape (n_sample_train, n_features)</code></dt>
+<dd>Training data.</dd>
+<dt><strong><code>y</code></strong> :&ensp;<code>Numpy array</code> of <code>shape (n_sample_train)</code></dt>
+<dd>Target values.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Self.</p>
+<h2 id="reference">Reference</h2>
+<p>G.-B. Huang, Q.-Y. Zhu, C.-K. Siew,
+Extreme learning machine: theory and applications,
+Neurocomputing 70 (1-3) (2006) 489–501.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fit(self, X, y):
+    &#39;&#39;&#39;
+    Training for ELM ensemble.
+    Initialize random hidden weights and compute output weights 
+    for all ELM models.
+    
+    Parameters
+    ----------
+    X : Numpy array of shape (n_sample_train, n_features)
+        Training data.
+    y : Numpy array of shape (n_sample_train)
+        Target values.
+
+    Returns
+    -------
+    Self.
+    
+    Reference
+    ---------
+    G.-B. Huang, Q.-Y. Zhu, C.-K. Siew, 
+    Extreme learning machine: theory and applications, 
+    Neurocomputing 70 (1-3) (2006) 489–501.  
+    
+    &#39;&#39;&#39;    
+    # print(&#34;ELMEnsemble fit&#34;)                
+    self.check = X.shape
+    X, y = check_X_y(X, y)
+    
+    self.X_ = X
+    self.y_ = y
+    
+    # random_state variable treatment
+    if self.random_state == None :
+        random_states = [None] * self.n_estimators
+        random_states = np.array(random_states)
+    else :
+        np.random.seed(self.random_state)
+        random_states = np.random.randint(int(1e8), size = self.n_estimators)
+    
+    # multiple fitting
+    n_obs, n_feat = X.shape
+    self.estimators_ = [0] * self.n_estimators
+    for i in range(self.n_estimators):
+        elm = ELM(n_neurons = self.n_neurons,
+                  activation = self.activation,
+                  weight_distr = self.weight_distr, 
+                  weight_scl = self.weight_scl,
+                  random_state = random_states[i])
+        elm.fit(X,y)
+        self.estimators_[i] = elm
+
+    return self</code></pre>
+</details>
+</dd>
+<dt id="UncELMe.elm_ensemble.ELMEnsemble.heteroskedastic_variance"><code class="name flex">
+<span>def <span class="ident">heteroskedastic_variance</span></span>(<span>self, estimate='S3', approx=False, corrected_residuals=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute a variance estimation at last predicted points assuming
+heteroskedasticity (non-constant noise variance).</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>estimate</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>Estimate to use, "naive", "S1, S2" or "S3". The "S3" estimate
+is highly recommended, see remark below. Default is "S3".</dd>
+<dt><strong><code>approx</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Speed up computation at the expense of a slightly approximate variance
+estimation. Default is 'False'.</dd>
+<dt><strong><code>corrected_residuals</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>If True, the corrected residuals used to compute HC3 are squared and
+returned as noise estimates at training points. If False, the raw
+residuals are used. Default is 'False'.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>var_predict</code></strong> :&ensp;<code>numpy array</code> of <code>shape (n_samples)</code></dt>
+<dd>Model variance estimation for y_predict.</dd>
+<dt><strong><code>noise_estimate</code></strong> :&ensp;<code>numpy array</code> of <code>shape (n_sample_train) </code></dt>
+<dd>Noise estimate at the training points.</dd>
+</dl>
+<h2 id="remarks">Remarks</h2>
+<p>The "naive" estimate was proposed in a proceeding of the 28th European
+Symposium on Artificial Neural Networks, Computational Intelligence and
+Machine Learning (ESANN 2020). This work motivated the Neurocomputing
+paper (see references below) in which the "bias-reduced" estimate was
+proposed. In particular, it was shown that the later as a lower bias and,
+therefore, was recommended. The "naive estimate" is still available for
+comparison and reproducibility purposes only.</p>
+<h2 id="references">References</h2>
+<p>F. Guignard, F. Amato and M. Kanevski.
+Uncertainty Quantification in Extreme Learning Machine:<br>
+Analytical Developments, Variance Estimates and Confidence Intervals,
+Neurocomputing 456 (2021) 436-449.</p>
+<p>F. Guignard, M. Laib and M. Kanevski.
+Model Variance for Extreme Learning Machine,
+ESANN (2020) 703-708.</p>
+<p>J.G. MacKinnon, H. White. Some heteroskedasticity-consistent
+covariance matrix estimators with improved finite sample properties,
+Journal of econometrics 29 (3) (1985) 305&ndash;325.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def heteroskedastic_variance(self, estimate=&#39;S3&#39;, approx=False, corrected_residuals=False):
+    &#39;&#39;&#39;
+    Compute a variance estimation at last predicted points assuming 
+    heteroskedasticity (non-constant noise variance).
+        
+    Parameters
+    ----------
+    estimate : string, optional
+        Estimate to use, &#34;naive&#34;, &#34;S1, S2&#34; or &#34;S3&#34;. The &#34;S3&#34; estimate 
+        is highly recommended, see remark below. Default is &#34;S3&#34;.
+    approx : bool, optional
+        Speed up computation at the expense of a slightly approximate variance 
+        estimation. Default is &#39;False&#39;.
+    corrected_residuals : bool, optional
+        If True, the corrected residuals used to compute HC3 are squared and
+        returned as noise estimates at training points. If False, the raw 
+        residuals are used. Default is &#39;False&#39;.
+        
+    Returns
+    -------
+    var_predict : numpy array of shape (n_samples)
+        Model variance estimation for y_predict.
+    noise_estimate : numpy array of shape (n_sample_train) 
+        Noise estimate at the training points.
+
+    Remarks
+    ------
+    The &#34;naive&#34; estimate was proposed in a proceeding of the 28th European 
+    Symposium on Artificial Neural Networks, Computational Intelligence and 
+    Machine Learning (ESANN 2020). This work motivated the Neurocomputing 
+    paper (see references below) in which the &#34;bias-reduced&#34; estimate was 
+    proposed. In particular, it was shown that the later as a lower bias and, 
+    therefore, was recommended. The &#34;naive estimate&#34; is still available for
+    comparison and reproducibility purposes only.
+        
+    References
+    ----------
+    F. Guignard, F. Amato and M. Kanevski. 
+    Uncertainty Quantification in Extreme Learning Machine:  
+    Analytical Developments, Variance Estimates and Confidence Intervals, 
+    Neurocomputing 456 (2021) 436-449.
+    
+    F. Guignard, M. Laib and M. Kanevski. 
+    Model Variance for Extreme Learning Machine,
+    ESANN (2020) 703-708.
+    
+    J.G. MacKinnon, H. White. Some heteroskedasticity-consistent 
+    covariance matrix estimators with improved finite sample properties, 
+    Journal of econometrics 29 (3) (1985) 305--325. 
+                
+    &#39;&#39;&#39; 
+    # print(&#34;ELMEnsemble heteroskedastic_variance&#34;)                                     
+    H_pinvs, H_predict, residuals = self._collect()
+    Hs = self._collect_Hs()
+    
+    z = np.einsum(&#39;pnm, nsm -&gt; psm&#39;, H_predict, H_pinvs, optimize = &#39;greedy&#39;)
+    Pdiag = np.einsum(&#39;nsm, snm -&gt; nm&#39;, Hs, H_pinvs, optimize = &#39;greedy&#39;)
+    corr_res = residuals/(1-Pdiag)
+    
+    # Noise estimate
+    if corrected_residuals == False:
+        noise_estimate = np.square(residuals).mean(axis=1)       
+    elif corrected_residuals == True:
+        noise_estimate = np.square(corr_res).mean(axis=1)
+    else :
+        raise TypeError(&#34;Only booleans are allowed for the &#39;corrected_residuals&#39; argument&#34;)
+    
+    if estimate == &#39;naive&#39; :   # naive estimation from ESANN proceeding
+        mu = z.mean(axis=2)
+        if approx == False :
+            Sigma = self._Sigma_estim(corr_res)
+            nu = self._nu_estim(z, Sigma)
+        elif approx == True :
+            Omega = np.square(corr_res)  
+            nu = self._nu_approx(z, Omega)
+        else :
+            raise TypeError(&#34;Only booleans are allowed for the &#39;approx&#39; argument&#34;)
+        var1 = np.einsum(&#39;ps, ps -&gt; p&#39;, mu, nu, optimize = &#39;greedy&#39;)                    
+            
+    elif estimate == &#39;S1&#39; or estimate == &#39;S2&#39; or estimate == &#39;S3&#39;: # estimation from Neurocomupting paper
+        if approx == False :
+            Sigma = self._Sigma_estim(corr_res)
+            var1 = self._S1_estim(z, Sigma)                   #S1 estimate
+            if estimate != &#39;S1&#39;:
+                mu = z.mean(axis=2)
+                nu = self._nu_estim(z, Sigma)
+                var1 = self._S2_estim(mu, nu, var1)           #S2 estimate
+                if estimate != &#39;S2&#39; :
+                    U = Sigma.mean(axis=2)
+                    V = self._V_estim(z, U)
+                    var1 = self._S3_estim(mu, U, V, var1)     #S3 estimate                         
+        elif approx == True :                                 #Simplified Jackknife
+            Omega = np.square(corr_res)                       
+            var1 = self._S1_approx(z, Omega)                  #S1_app estimate
+            if estimate != &#39;S1&#39;:
+                mu = z.mean(axis=2)
+                nu_app = self._nu_approx(z, Omega)
+                var1 = self._S2_estim(mu, nu_app, var1)       #S2_app estimate
+                if estimate != &#39;S2&#39; :
+                    U_app = Omega.mean(axis = 1)    
+                    V_app = self._V_approx(z, U_app)
+                    var1 = self._S3_approx(mu, U_app, V_app, var1)  #S3_app estimate  
+        else :
+            raise TypeError(&#34;Only booleans are allowed for the &#39;approx&#39; argument&#34;)
+    
+    else :
+        raise TypeError(&#34;Only &#39;S1&#39;, &#39;S2&#39;, &#39;S3&#39; or &#39;naive&#39; are allowed for the &#39;estimate&#39; argument&#34;)
+    
+    # Compute model variance induced by the random weights and the total variance
+    var2 = self.y_var_/self.n_estimators
+    var_predict = var1 + var2
+        
+    return var_predict, noise_estimate    </code></pre>
+</details>
+</dd>
+<dt id="UncELMe.elm_ensemble.ELMEnsemble.homoskedastic_variance"><code class="name flex">
+<span>def <span class="ident">homoskedastic_variance</span></span>(<span>self, estimate='bias-reduced')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute an homoskedastic variance estimation of the model at last predicted points.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>estimate</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>Estimate to use, "naive" or "bias-reduced". The "bias-reduced" estimate
+is highly recommended, see remark below. Default is "bias-reduced".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>var_predict</code></strong> :&ensp;<code>numpy array</code> of <code>shape (n_samples)</code></dt>
+<dd>Model variance estimation for y_predict.</dd>
+<dt><strong><code>noise_estimate</code></strong> :&ensp;<code>float</code></dt>
+<dd>Noise estimate.</dd>
+</dl>
+<h2 id="remarks">Remarks</h2>
+<p>The "naive" estimate was proposed in a proceeding of the 28th European
+Symposium on Artificial Neural Networks, Computational Intelligence and
+Machine Learning (ESANN 2020). This work motivated the Neurocomputing
+paper (see references below) in which the "bias-reduced" estimate was
+proposed. In particular, it was shown that the later as a lower bias and,
+therefore, was recommended. The "naive estimate" is still available for
+comparison and reproducibility purposes only.</p>
+<h2 id="references">References</h2>
+<p>F. Guignard, F. Amato and M. Kanevski.
+Uncertainty Quantification in Extreme Learning Machine:<br>
+Analytical Developments, Variance Estimates and Confidence Intervals,
+Neurocomputing 456 (2021) 436-449.</p>
+<p>F. Guignard, M. Laib and M. Kanevski.
+Model Variance for Extreme Learning Machine,
+ESANN (2020) 703-708.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def homoskedastic_variance(self, estimate = &#39;bias-reduced&#39;):
+    &#39;&#39;&#39;
+    Compute an homoskedastic variance estimation of the model at last predicted points.
+        
+    Parameters
+    ----------
+    estimate : string, optional
+        Estimate to use, &#34;naive&#34; or &#34;bias-reduced&#34;. The &#34;bias-reduced&#34; estimate 
+        is highly recommended, see remark below. Default is &#34;bias-reduced&#34;.
+    
+    Returns
+    -------
+    var_predict : numpy array of shape (n_samples)
+        Model variance estimation for y_predict.
+    noise_estimate : float
+        Noise estimate.
+        
+    Remarks
+    ------
+    The &#34;naive&#34; estimate was proposed in a proceeding of the 28th European 
+    Symposium on Artificial Neural Networks, Computational Intelligence and 
+    Machine Learning (ESANN 2020). This work motivated the Neurocomputing 
+    paper (see references below) in which the &#34;bias-reduced&#34; estimate was 
+    proposed. In particular, it was shown that the later as a lower bias and, 
+    therefore, was recommended. The &#34;naive estimate&#34; is still available for
+    comparison and reproducibility purposes only.
+        
+    References
+    ----------
+    F. Guignard, F. Amato and M. Kanevski. 
+    Uncertainty Quantification in Extreme Learning Machine:  
+    Analytical Developments, Variance Estimates and Confidence Intervals, 
+    Neurocomputing 456 (2021) 436-449.
+    
+    F. Guignard, M. Laib and M. Kanevski. 
+    Model Variance for Extreme Learning Machine,
+    ESANN (2020) 703-708.
+
+    &#39;&#39;&#39; 
+    # print(&#34;ELMEnsemble homoskedastic_variance&#34;)                       
+    n_obs = self.X_.shape[0]
+    H_pinvs, H_predict, residuals = self._collect()
+    
+    # Compute noise estimation
+    ddof = n_obs - self.n_neurons
+    ARSS = self._AvgRSS(residuals)
+    noise = ARSS / ddof
+    
+    #Compute model variance induced by noise
+    muTmu = self._muTmu_estim(H_pinvs, H_predict, estimate)
+    var1 = noise * muTmu
+    
+    # Compute model variance induced by the random weights
+    var2 = self.y_var_/self.n_estimators
+
+    var_predict = var1 + var2 
+        
+    return var_predict, noise </code></pre>
+</details>
+</dd>
+<dt id="UncELMe.elm_ensemble.ELMEnsemble.predict"><code class="name flex">
+<span>def <span class="ident">predict</span></span>(<span>self, X_predict)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Averaged prediction of ELM ensemble.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>X_predict</code></strong> :&ensp;<code>Numpy array</code> of <code>shape (n_samples, n_features)</code></dt>
+<dd>Input data to predict.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>y_predict</code></strong> :&ensp;<code>Numpy array</code> of <code>shape (n_samples)</code></dt>
+<dd>Predicted output</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def predict(self, X_predict):
+    &#39;&#39;&#39;
+    Averaged prediction of ELM ensemble.
+    
+    Parameters
+    ----------
+    X_predict : Numpy array of shape (n_samples, n_features)
+        Input data to predict.
+
+    Returns
+    -------
+    y_predict : Numpy array of shape (n_samples)
+        Predicted output
+
+    &#39;&#39;&#39; 
+    # print(&#34;ELMEnsemble predict&#34;)                         
+    check_is_fitted(self, [&#39;X_&#39;, &#39;y_&#39;])
+    X_predict = check_array(X_predict)
+    
+    self.X_predict_ = X_predict
+    
+    y_predict = np.zeros((X_predict.shape[0], self.n_estimators))
+    for i in range(self.n_estimators):
+         y_predict[:,i] = self.estimators_[i].predict(X_predict)
+    
+    self.y_var_ = y_predict.var(axis = 1, ddof = 1)   
+    y_predict_avg = y_predict.mean(axis = 1)    
+    
+    return y_predict_avg</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="UncELMe.elm_ensemble.ELMEnsembleRidge"><code class="flex name class">
+<span>class <span class="ident">ELMEnsembleRidge</span></span>
+<span>(</span><span>n_estimators=20, n_neurons=100, alpha=1.0, activation='logistic', weight_distr='uniform', weight_scl=1.0, n_jobs=1, random_state=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Instances of the ELMEnsembleRidge class are scikit-learn compatible estimators for regression
+based on ensemble of regularized Extreme Learning Machine estimators from the ELMRidge class.
+This class provides estimation of model variance for the ensemble, under homoskedastic and
+heteroskedastic assumptions.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>n_estimators</code></strong> :&ensp;<code>integer,</code></dt>
+<dd>Number of ELM models in the ensemble. The default is 20.</dd>
+<dt><strong><code>n_neurons</code></strong> :&ensp;<code>integer,</code></dt>
+<dd>Number of neurons of each model. The default is 100.</dd>
+<dt><strong><code>alpha</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>Regularization strength, aka Tikhonov factor. The default is 1.0.</dd>
+<dt><strong><code>activation</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>Activation function ('logistic' or 'tanh'). The default is 'logistic'.</dd>
+<dt><strong><code>weight_distr</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>Distribution of weights ('uniform' or 'gaussian').
+The default is 'uniform'.</dd>
+<dt><strong><code>weight_scl</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>Controle the scale of the weight distribution.
+If weights are uniforms, they are drawn from [-weight_scl, weight_scl].
+If weights are Gaussians, they are centred with standard deviation
+equal to weight_scl. The default is 1.0.</dd>
+<dt><strong><code>n_jobs</code></strong> :&ensp;<code>integer,</code></dt>
+<dd>Number of processors to use for the computation.</dd>
+<dt><strong><code>random_state</code></strong> :&ensp;<code>integer</code>, optional</dt>
+<dd>Random seed for reproductible results. The default is None.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ELMEnsembleRidge(ELMEnsemble, BaseEstimator, RegressorMixin): 
+    &#39;&#39;&#39;
+    Instances of the ELMEnsembleRidge class are scikit-learn compatible estimators for regression 
+    based on ensemble of regularized Extreme Learning Machine estimators from the ELMRidge class.
+    This class provides estimation of model variance for the ensemble, under homoskedastic and 
+    heteroskedastic assumptions.
+
+    &#39;&#39;&#39;
+    
+    def __init__(self, n_estimators=20, n_neurons=100, alpha=1.0, 
+                 activation=&#39;logistic&#39;, weight_distr=&#39;uniform&#39;, weight_scl=1.0, 
+                 n_jobs=1, random_state=None):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        n_estimators : integer,
+            Number of ELM models in the ensemble. The default is 20.
+        n_neurons : integer,
+            Number of neurons of each model. The default is 100.
+        alpha : float, optional
+            Regularization strength, aka Tikhonov factor. The default is 1.0.
+        activation : string, optional
+            Activation function (&#39;logistic&#39; or &#39;tanh&#39;). The default is &#39;logistic&#39;.
+        weight_distr : string, optional
+            Distribution of weights (&#39;uniform&#39; or &#39;gaussian&#39;). 
+            The default is &#39;uniform&#39;. 
+        weight_scl : float, optional
+            Controle the scale of the weight distribution.
+            If weights are uniforms, they are drawn from [-weight_scl, weight_scl].
+            If weights are Gaussians, they are centred with standard deviation
+            equal to weight_scl. The default is 1.0.
+        n_jobs : integer,
+            Number of processors to use for the computation.
+        random_state : integer, optional
+            Random seed for reproductible results. The default is None.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        # print(&#34;ELMEnsembleRidge __init__&#34;)      
+        ELMEnsemble.__init__(self, n_estimators, n_neurons, activation, 
+                            weight_distr, weight_scl, n_jobs, random_state)  
+        self.alpha = alpha             
+
+                
+    def fit(self, X, y):
+        &#39;&#39;&#39;
+        Training for regularized ELM ensemble.
+        Initialize random hidden weights and compute output weights 
+        for all ELM models.
+        
+        Parameters
+        ----------
+        X : Numpy array of shape (n_sample_train, n_features)
+            Training data.
+        y : Numpy array of shape (n_sample_train)
+            Target values.
+
+        Returns
+        -------
+        Self.
+        
+        Reference
+        ---------
+        W. Deng, Q. Zheng, L. Chen,  
+        Regularized extreme learning machine, 
+        IEEE symposium on computational intelligence and data mining, 2009, pp. 389–395.
+        
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsembleRidge fit&#34;)                
+        self.check = X.shape
+        X, y = check_X_y(X, y)
+        
+        self.X_ = X
+        self.y_ = y
+        
+        # random_state variable treatment
+        if self.random_state == None :
+            random_states = [None] * self.n_estimators
+            random_states = np.array(random_states)
+        else :
+            np.random.seed(self.random_state)
+            random_states = np.random.randint(int(1e8), size = self.n_estimators)
+        
+        # multiple fitting
+        n_obs, n_feat = X.shape
+        self.estimators_ = [0] * self.n_estimators
+        for i in range(self.n_estimators):
+            elm = ELMRidge(n_neurons = self.n_neurons,
+                           alpha = self.alpha,
+                           activation = self.activation,
+                           weight_distr = self.weight_distr, 
+                           weight_scl = self.weight_scl,
+                           random_state = random_states[i])
+            elm.fit(X,y)
+            self.estimators_[i] = elm
+
+        return self
+  
+    def _collect(self):
+        &#39;&#39;&#39;
+        Collect H_alpha_, H_predict and residuals in each model
+
+        Returns
+        -------
+        H_alphas : numpy array of shape (n_neurons, n_samples, n_estimators)
+            Pseudo-inverses of hidden matrices.
+        H_predict : numpy array of shape (n_predicted_points, n_neurons, n_estimators)
+            Hidden matrices for all the predicted points.
+        residuals : numpy array of shape (n_samples, n_estimators)
+            Training residuals for all models.
+        &#39;&#39;&#39;
+        # print(&#34;ELMEnsembleRidge _collect&#34;) 
+        n_obs = self.X_.shape[0]
+        n_predict = self.X_predict_.shape[0]
+        N = self.n_neurons
+        M = self.n_estimators
+        
+        H_alphas = np.zeros((N, n_obs, M))
+        H_predict = np.zeros((n_predict, N, M))
+        residuals = np.zeros((n_obs, M))
+        
+        for i in range(M):   
+            elm = self.estimators_[i]
+            H_alphas[:, :, i] = elm.H_alpha_
+            H_predict[:, :, i] = elm._H_compute(self.X_predict_)
+            residuals[:, i] = elm.predict(self.X_) - self.y_
+            
+        return H_alphas, H_predict, residuals
+
+    def homoskedastic_variance(self, estimate=&#39;bias-reduced&#39;):
+        &#39;&#39;&#39;
+        Compute an homoskedastic variance estimation of the model at last predicted points.
+            
+        Parameters
+        ----------
+        estimate : string, optional
+            Estimate to use, &#39;naive&#39; or &#39;bias-reduced&#39;. The &#39;bias-reduced&#39; estimate 
+            is recommended, see remark below. Default is &#39;bias-reduced&#39;.
+
+        Returns
+        -------
+        var_predict : numpy array of shape (n_samples)
+            Model variance estimation for y_predict.
+        noise_estimate : float
+            Noise estimate.
+ 
+        Remarks
+        ------
+        The &#34;naive&#34; estimate was proposed in a proceeding of the 28th European 
+        Symposium on Artificial Neural Networks, Computational Intelligence and 
+        Machine Learning (ESANN 2020). This work motivated the Neurocomputing 
+        paper (see references below) in which the &#34;bias-reduced&#34; estimate was 
+        proposed. In particular, it was shown that the later as a lower bias and, 
+        therefore, was recommended. The &#34;naive estimate&#34; is still available for
+        comparison and reproducibility purposes only.
+            
+        References
+        ----------
+        F. Guignard, F. Amato and M. Kanevski. 
+        Uncertainty Quantification in Extreme Learning Machine:  
+        Analytical Developments, Variance Estimates and Confidence Intervals, 
+        Neurocomputing 456 (2021) 436-449.
+        
+        F. Guignard, M. Laib and M. Kanevski. 
+        Model Variance for Extreme Learning Machine,
+        ESANN (2020) 703-708.
+            
+        &#39;&#39;&#39; 
+        # print(&#34;ELMEnsembleRidge homoskedastic_variance&#34;)                 
+        n_obs = self.X_.shape[0]
+        H_alphas, H_predict, residuals = self._collect()
+        Hs = self._collect_Hs()
+        Hs = Hs.transpose(2,0,1)
+        eigenHTHs = np.square(np.linalg.svd(Hs, full_matrices= False, compute_uv=False, hermitian=False))
+        eigenP = (eigenHTHs/(eigenHTHs + self.alpha))
+        eigenP2 = np.square(eigenP)
+        self.gamma_ = (2*eigenP - eigenP2).sum() / self.n_estimators
+        
+        ddof = n_obs - self.gamma_ 
+                
+        # Compute noise estimation
+        ARSS = self._AvgRSS(residuals)
+        noise = ARSS / ddof
+        
+        #Compute model variance induced by noise
+        muTmu = self._muTmu_estim(H_alphas, H_predict, estimate)
+        var1 = noise * muTmu
+        
+        # Compute model variance induced by the random weights
+        var2 = self.y_var_/self.n_estimators
+
+        var_predict = var1 + var2 
+            
+        return var_predict, noise </code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="UncELMe.elm_ensemble.ELMEnsemble" href="#UncELMe.elm_ensemble.ELMEnsemble">ELMEnsemble</a></li>
+<li>sklearn.base.BaseEstimator</li>
+<li>sklearn.base.RegressorMixin</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="UncELMe.elm_ensemble.ELMEnsembleRidgeCV" href="#UncELMe.elm_ensemble.ELMEnsembleRidgeCV">ELMEnsembleRidgeCV</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="UncELMe.elm_ensemble.ELMEnsembleRidge.fit"><code class="name flex">
+<span>def <span class="ident">fit</span></span>(<span>self, X, y)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Training for regularized ELM ensemble.
+Initialize random hidden weights and compute output weights
+for all ELM models.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>X</code></strong> :&ensp;<code>Numpy array</code> of <code>shape (n_sample_train, n_features)</code></dt>
+<dd>Training data.</dd>
+<dt><strong><code>y</code></strong> :&ensp;<code>Numpy array</code> of <code>shape (n_sample_train)</code></dt>
+<dd>Target values.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Self.</p>
+<h2 id="reference">Reference</h2>
+<p>W. Deng, Q. Zheng, L. Chen,<br>
+Regularized extreme learning machine,
+IEEE symposium on computational intelligence and data mining, 2009, pp. 389–395.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fit(self, X, y):
+    &#39;&#39;&#39;
+    Training for regularized ELM ensemble.
+    Initialize random hidden weights and compute output weights 
+    for all ELM models.
+    
+    Parameters
+    ----------
+    X : Numpy array of shape (n_sample_train, n_features)
+        Training data.
+    y : Numpy array of shape (n_sample_train)
+        Target values.
+
+    Returns
+    -------
+    Self.
+    
+    Reference
+    ---------
+    W. Deng, Q. Zheng, L. Chen,  
+    Regularized extreme learning machine, 
+    IEEE symposium on computational intelligence and data mining, 2009, pp. 389–395.
+    
+    &#39;&#39;&#39;    
+    # print(&#34;ELMEnsembleRidge fit&#34;)                
+    self.check = X.shape
+    X, y = check_X_y(X, y)
+    
+    self.X_ = X
+    self.y_ = y
+    
+    # random_state variable treatment
+    if self.random_state == None :
+        random_states = [None] * self.n_estimators
+        random_states = np.array(random_states)
+    else :
+        np.random.seed(self.random_state)
+        random_states = np.random.randint(int(1e8), size = self.n_estimators)
+    
+    # multiple fitting
+    n_obs, n_feat = X.shape
+    self.estimators_ = [0] * self.n_estimators
+    for i in range(self.n_estimators):
+        elm = ELMRidge(n_neurons = self.n_neurons,
+                       alpha = self.alpha,
+                       activation = self.activation,
+                       weight_distr = self.weight_distr, 
+                       weight_scl = self.weight_scl,
+                       random_state = random_states[i])
+        elm.fit(X,y)
+        self.estimators_[i] = elm
+
+    return self</code></pre>
+</details>
+</dd>
+<dt id="UncELMe.elm_ensemble.ELMEnsembleRidge.homoskedastic_variance"><code class="name flex">
+<span>def <span class="ident">homoskedastic_variance</span></span>(<span>self, estimate='bias-reduced')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute an homoskedastic variance estimation of the model at last predicted points.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>estimate</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>Estimate to use, 'naive' or 'bias-reduced'. The 'bias-reduced' estimate
+is recommended, see remark below. Default is 'bias-reduced'.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>var_predict</code></strong> :&ensp;<code>numpy array</code> of <code>shape (n_samples)</code></dt>
+<dd>Model variance estimation for y_predict.</dd>
+<dt><strong><code>noise_estimate</code></strong> :&ensp;<code>float</code></dt>
+<dd>Noise estimate.</dd>
+</dl>
+<h2 id="remarks">Remarks</h2>
+<p>The "naive" estimate was proposed in a proceeding of the 28th European
+Symposium on Artificial Neural Networks, Computational Intelligence and
+Machine Learning (ESANN 2020). This work motivated the Neurocomputing
+paper (see references below) in which the "bias-reduced" estimate was
+proposed. In particular, it was shown that the later as a lower bias and,
+therefore, was recommended. The "naive estimate" is still available for
+comparison and reproducibility purposes only.</p>
+<h2 id="references">References</h2>
+<p>F. Guignard, F. Amato and M. Kanevski.
+Uncertainty Quantification in Extreme Learning Machine:<br>
+Analytical Developments, Variance Estimates and Confidence Intervals,
+Neurocomputing 456 (2021) 436-449.</p>
+<p>F. Guignard, M. Laib and M. Kanevski.
+Model Variance for Extreme Learning Machine,
+ESANN (2020) 703-708.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def homoskedastic_variance(self, estimate=&#39;bias-reduced&#39;):
+    &#39;&#39;&#39;
+    Compute an homoskedastic variance estimation of the model at last predicted points.
+        
+    Parameters
+    ----------
+    estimate : string, optional
+        Estimate to use, &#39;naive&#39; or &#39;bias-reduced&#39;. The &#39;bias-reduced&#39; estimate 
+        is recommended, see remark below. Default is &#39;bias-reduced&#39;.
+
+    Returns
+    -------
+    var_predict : numpy array of shape (n_samples)
+        Model variance estimation for y_predict.
+    noise_estimate : float
+        Noise estimate.
+
+    Remarks
+    ------
+    The &#34;naive&#34; estimate was proposed in a proceeding of the 28th European 
+    Symposium on Artificial Neural Networks, Computational Intelligence and 
+    Machine Learning (ESANN 2020). This work motivated the Neurocomputing 
+    paper (see references below) in which the &#34;bias-reduced&#34; estimate was 
+    proposed. In particular, it was shown that the later as a lower bias and, 
+    therefore, was recommended. The &#34;naive estimate&#34; is still available for
+    comparison and reproducibility purposes only.
+        
+    References
+    ----------
+    F. Guignard, F. Amato and M. Kanevski. 
+    Uncertainty Quantification in Extreme Learning Machine:  
+    Analytical Developments, Variance Estimates and Confidence Intervals, 
+    Neurocomputing 456 (2021) 436-449.
+    
+    F. Guignard, M. Laib and M. Kanevski. 
+    Model Variance for Extreme Learning Machine,
+    ESANN (2020) 703-708.
+        
+    &#39;&#39;&#39; 
+    # print(&#34;ELMEnsembleRidge homoskedastic_variance&#34;)                 
+    n_obs = self.X_.shape[0]
+    H_alphas, H_predict, residuals = self._collect()
+    Hs = self._collect_Hs()
+    Hs = Hs.transpose(2,0,1)
+    eigenHTHs = np.square(np.linalg.svd(Hs, full_matrices= False, compute_uv=False, hermitian=False))
+    eigenP = (eigenHTHs/(eigenHTHs + self.alpha))
+    eigenP2 = np.square(eigenP)
+    self.gamma_ = (2*eigenP - eigenP2).sum() / self.n_estimators
+    
+    ddof = n_obs - self.gamma_ 
+            
+    # Compute noise estimation
+    ARSS = self._AvgRSS(residuals)
+    noise = ARSS / ddof
+    
+    #Compute model variance induced by noise
+    muTmu = self._muTmu_estim(H_alphas, H_predict, estimate)
+    var1 = noise * muTmu
+    
+    # Compute model variance induced by the random weights
+    var2 = self.y_var_/self.n_estimators
+
+    var_predict = var1 + var2 
+        
+    return var_predict, noise </code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="UncELMe.elm_ensemble.ELMEnsemble" href="#UncELMe.elm_ensemble.ELMEnsemble">ELMEnsemble</a></b></code>:
+<ul class="hlist">
+<li><code><a title="UncELMe.elm_ensemble.ELMEnsemble.heteroskedastic_variance" href="#UncELMe.elm_ensemble.ELMEnsemble.heteroskedastic_variance">heteroskedastic_variance</a></code></li>
+<li><code><a title="UncELMe.elm_ensemble.ELMEnsemble.predict" href="#UncELMe.elm_ensemble.ELMEnsemble.predict">predict</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="UncELMe.elm_ensemble.ELMEnsembleRidgeCV"><code class="flex name class">
+<span>class <span class="ident">ELMEnsembleRidgeCV</span></span>
+<span>(</span><span>n_estimators=20, n_neurons=100, alphas=array([ 0.1,
+1. , 10. ]), activation='logistic', weight_distr='uniform', weight_scl=1.0, n_jobs=1, random_state=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Instances of the ELMEnsembleRidgeCV class are scikit-learn compatible estimators for regression
+based on ensemble of regularized Extreme Learning Machine estimators from the ELMRidgeCV class.
+This class provides estimation of model variance for the ensemble, under homoskedastic and
+heteroskedastic assumptions.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>n_estimators</code></strong> :&ensp;<code>integer,</code></dt>
+<dd>Number of ELM models in the ensemble. The default is 20.</dd>
+<dt><strong><code>n_neurons</code></strong> :&ensp;<code>integer,</code></dt>
+<dd>Number of neurons of each model. The default is 100.</dd>
+<dt><strong><code>alphas</code></strong> :&ensp;<code>ndarray</code>, optional</dt>
+<dd>Array of alpha's values to try. Regularization strength,
+aka Tikhonov factor. The default is np.array([0.1, 1.0, 10]).</dd>
+<dt><strong><code>activation</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>Activation function ('logistic' or 'tanh'). The default is 'logistic'.</dd>
+<dt><strong><code>weight_distr</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>Distribution of weights ('uniform' or 'gaussian').
+The default is 'uniform'.</dd>
+<dt><strong><code>weight_scl</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>Controle the scale of the weight distribution.
+If weights are uniforms, they are drawn from [-weight_scl, weight_scl].
+If weights are Gaussians, they are centred with standard deviation
+equal to weight_scl. The default is 1.0.</dd>
+<dt><strong><code>n_jobs</code></strong> :&ensp;<code>integer,</code></dt>
+<dd>Number of processors to use for the computation.</dd>
+<dt><strong><code>random_state</code></strong> :&ensp;<code>integer</code>, optional</dt>
+<dd>Random seed for reproductible results. The default is None.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ELMEnsembleRidgeCV(ELMEnsembleRidge, BaseEstimator, RegressorMixin):
+    &#39;&#39;&#39;
+    Instances of the ELMEnsembleRidgeCV class are scikit-learn compatible estimators for regression 
+    based on ensemble of regularized Extreme Learning Machine estimators from the ELMRidgeCV class.
+    This class provides estimation of model variance for the ensemble, under homoskedastic and 
+    heteroskedastic assumptions.
+
+    &#39;&#39;&#39;
+    
+    def __init__(self, n_estimators=20, n_neurons=100, alphas=np.array([0.1, 1.0, 10]), 
+                 activation=&#39;logistic&#39;, weight_distr=&#39;uniform&#39;, weight_scl=1.0, 
+                 n_jobs=1, random_state=None):
+        &#39;&#39;&#39;
+        Parameters
+        ----------
+        n_estimators : integer,
+            Number of ELM models in the ensemble. The default is 20.
+        n_neurons : integer,
+            Number of neurons of each model. The default is 100.
+        alphas : ndarray, optional
+            Array of alpha&#39;s values to try. Regularization strength, 
+            aka Tikhonov factor. The default is np.array([0.1, 1.0, 10]).
+        activation : string, optional
+            Activation function (&#39;logistic&#39; or &#39;tanh&#39;). The default is &#39;logistic&#39;.
+        weight_distr : string, optional
+            Distribution of weights (&#39;uniform&#39; or &#39;gaussian&#39;). 
+            The default is &#39;uniform&#39;. 
+        weight_scl : float, optional
+            Controle the scale of the weight distribution.
+            If weights are uniforms, they are drawn from [-weight_scl, weight_scl].
+            If weights are Gaussians, they are centred with standard deviation
+            equal to weight_scl. The default is 1.0.
+        n_jobs : integer,
+            Number of processors to use for the computation.
+        random_state : integer, optional
+            Random seed for reproductible results. The default is None.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;        
+        # print(&#34;ELMEnsembleRidgeCV __init__&#34;)
+        ELMEnsemble.__init__(self, n_estimators, n_neurons, activation, 
+                             weight_distr, weight_scl, n_jobs, random_state)  
+        self.alphas = alphas         
+   
+    
+    def fit(self, X, y):
+        &#39;&#39;&#39;
+        Training for regularized ELM ensemble, with Generalized Cross Validation.
+        Initialize random hidden weights and compute output weights 
+        for all ELM models.
+        
+        Parameters
+        ----------
+        X : Numpy array of shape (n_sample_train, n_features)
+            Training data.
+        y : Numpy array of shape (n_sample_train)
+            Target values.
+
+        Returns
+        -------
+        Self.
+        
+        References
+        ----------
+        W. Deng, Q. Zheng, L. Chen,  
+        Regularized extreme learning machine, 
+        IEEE symposium on computational intelligence and data mining, 2009, pp. 389–395.
+        
+        G. H. Golub, M. Heath, G. Wahba, 
+        Generalized cross-validation as a method for choosing a good ridge parameter,
+        Technometrics 21 (2) (1979) 215–223.
+        
+        &#39;&#39;&#39;    
+        # print(&#34;ELMEnsembleRidgeCV fit&#34;)        
+        self.check = X.shape
+        X, y = check_X_y(X, y)
+        
+        self.X_ = X
+        self.y_ = y
+        
+        # random_state variable treatment
+        if self.random_state == None :
+            random_states = [None] * self.n_estimators
+            random_states = np.array(random_states)
+        else :
+            np.random.seed(self.random_state)
+            random_states = np.random.randint(int(1e8), size = self.n_estimators)
+        
+        # multiple fitting
+        n_obs, n_feat = X.shape
+        self.estimators_ = [0] * self.n_estimators
+        for i in range(self.n_estimators):
+            elm = ELMRidgeCV(n_neurons = self.n_neurons,
+                             alphas = self.alphas,
+                             activation = self.activation,
+                             weight_distr = self.weight_distr, 
+                             weight_scl = self.weight_scl,
+                             random_state = random_states[i])
+            elm.fit(X,y)
+            self.estimators_[i] = elm
+
+        return self    
+    
+    def _collect_alphas_opt(self):
+        &#39;&#39;&#39;
+        Collect alpha_opt in each model. Complete the _collect() function for the
+        homoskedastic GCV case.
+
+        Returns
+        -------
+        alphas_opt : numpy array of shape (n_estimators)
+             alpha_opt for each model of the ensemble.
+
+        &#39;&#39;&#39;
+        # print(&#34;ELMEnsembleRidgeCV _collect_alphas_opt&#34;)  
+        M = self.n_estimators
+        
+        alphas_opt = np.zeros((M))  
+        for i in range(M):   
+            elm = self.estimators_[i]
+            alphas_opt[i] = elm.alpha_opt  
+            
+        return alphas_opt
+
+    def homoskedastic_variance(self, estimate=&#39;bias-reduced&#39;):
+        &#39;&#39;&#39;
+        Compute an homoskedastic variance estimation of the model at last predicted points.
+            
+        Parameters
+        ----------
+        estimate : string, optional
+            Estimate to use, &#39;naive&#39; or &#39;bias-reduced&#39;. The &#39;bias-reduced&#39; estimate 
+            is recommended, see remark below. Default is &#39;bias-reduced&#39;.
+
+        Returns
+        -------
+        var_predict : numpy array of shape (n_samples)
+            Model variance estimation for y_predict.
+        noise_estimate : numpy.float
+            Noise estimate.
+ 
+        Remarks
+        ------
+        The &#34;naive&#34; estimate was proposed in a proceeding of the 28th European 
+        Symposium on Artificial Neural Networks, Computational Intelligence and 
+        Machine Learning (ESANN 2020). This work motivated the Neurocomputing 
+        paper (see references below) in which the &#34;bias-reduced&#34; estimate was 
+        proposed. In particular, it was shown that the later as a lower bias and, 
+        therefore, was recommended. The &#34;naive estimate&#34; is still available for
+        comparison and reproducibility purposes only.
+            
+        References
+        ----------
+        F. Guignard, F. Amato and M. Kanevski. 
+        Uncertainty Quantification in Extreme Learning Machine:  
+        Analytical Developments, Variance Estimates and Confidence Intervals, 
+        Neurocomputing 456 (2021) 436-449.
+        
+        F. Guignard, M. Laib and M. Kanevski. 
+        Model Variance for Extreme Learning Machine,
+        ESANN (2020) 703-708.
+            
+        &#39;&#39;&#39; 
+        # print(&#34;ELMEnsembleRidgeCV homoskedastic_variance&#34;)                 
+        n_obs = self.X_.shape[0]
+        H_alphas, H_predict, residuals = self._collect()
+        Hs = self._collect_Hs()          
+        Hs = Hs.transpose(2,0,1)
+        alphas_opt = self._collect_alphas_opt()                                 ### change from non GCV case
+        alphas_opt = alphas_opt.reshape((alphas_opt.shape[0], 1))               ### change from non GCV case
+        alphas_opt = alphas_opt.repeat(self.n_neurons, axis = 1)                ### change from non GCV case
+        eigenHTHs = np.square(np.linalg.svd(Hs, full_matrices= False, compute_uv=False, hermitian=False))
+        eigenP = (eigenHTHs/(eigenHTHs + alphas_opt))                           ### change from non GCV case
+        eigenP2 = np.square(eigenP)
+        self.gamma_ = (2*eigenP - eigenP2).sum() / self.n_estimators
+        
+        ddof = n_obs - self.gamma_ 
+                
+        # Compute noise estimation
+        ARSS = self._AvgRSS(residuals)
+        noise = ARSS / ddof
+        
+        #Compute model variance induced by noise
+        muTmu = self._muTmu_estim(H_alphas, H_predict, estimate)
+        var1 = noise * muTmu
+        
+        # Compute model variance induced by the random weights
+        var2 = self.y_var_/self.n_estimators
+
+        var_predict = var1 + var2 
+            
+        return var_predict, noise </code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="UncELMe.elm_ensemble.ELMEnsembleRidge" href="#UncELMe.elm_ensemble.ELMEnsembleRidge">ELMEnsembleRidge</a></li>
+<li><a title="UncELMe.elm_ensemble.ELMEnsemble" href="#UncELMe.elm_ensemble.ELMEnsemble">ELMEnsemble</a></li>
+<li>sklearn.base.BaseEstimator</li>
+<li>sklearn.base.RegressorMixin</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="UncELMe.elm_ensemble.ELMEnsembleRidgeCV.fit"><code class="name flex">
+<span>def <span class="ident">fit</span></span>(<span>self, X, y)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Training for regularized ELM ensemble, with Generalized Cross Validation.
+Initialize random hidden weights and compute output weights
+for all ELM models.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>X</code></strong> :&ensp;<code>Numpy array</code> of <code>shape (n_sample_train, n_features)</code></dt>
+<dd>Training data.</dd>
+<dt><strong><code>y</code></strong> :&ensp;<code>Numpy array</code> of <code>shape (n_sample_train)</code></dt>
+<dd>Target values.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Self.</p>
+<h2 id="references">References</h2>
+<p>W. Deng, Q. Zheng, L. Chen,<br>
+Regularized extreme learning machine,
+IEEE symposium on computational intelligence and data mining, 2009, pp. 389–395.</p>
+<p>G. H. Golub, M. Heath, G. Wahba,
+Generalized cross-validation as a method for choosing a good ridge parameter,
+Technometrics 21 (2) (1979) 215–223.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fit(self, X, y):
+    &#39;&#39;&#39;
+    Training for regularized ELM ensemble, with Generalized Cross Validation.
+    Initialize random hidden weights and compute output weights 
+    for all ELM models.
+    
+    Parameters
+    ----------
+    X : Numpy array of shape (n_sample_train, n_features)
+        Training data.
+    y : Numpy array of shape (n_sample_train)
+        Target values.
+
+    Returns
+    -------
+    Self.
+    
+    References
+    ----------
+    W. Deng, Q. Zheng, L. Chen,  
+    Regularized extreme learning machine, 
+    IEEE symposium on computational intelligence and data mining, 2009, pp. 389–395.
+    
+    G. H. Golub, M. Heath, G. Wahba, 
+    Generalized cross-validation as a method for choosing a good ridge parameter,
+    Technometrics 21 (2) (1979) 215–223.
+    
+    &#39;&#39;&#39;    
+    # print(&#34;ELMEnsembleRidgeCV fit&#34;)        
+    self.check = X.shape
+    X, y = check_X_y(X, y)
+    
+    self.X_ = X
+    self.y_ = y
+    
+    # random_state variable treatment
+    if self.random_state == None :
+        random_states = [None] * self.n_estimators
+        random_states = np.array(random_states)
+    else :
+        np.random.seed(self.random_state)
+        random_states = np.random.randint(int(1e8), size = self.n_estimators)
+    
+    # multiple fitting
+    n_obs, n_feat = X.shape
+    self.estimators_ = [0] * self.n_estimators
+    for i in range(self.n_estimators):
+        elm = ELMRidgeCV(n_neurons = self.n_neurons,
+                         alphas = self.alphas,
+                         activation = self.activation,
+                         weight_distr = self.weight_distr, 
+                         weight_scl = self.weight_scl,
+                         random_state = random_states[i])
+        elm.fit(X,y)
+        self.estimators_[i] = elm
+
+    return self    </code></pre>
+</details>
+</dd>
+<dt id="UncELMe.elm_ensemble.ELMEnsembleRidgeCV.homoskedastic_variance"><code class="name flex">
+<span>def <span class="ident">homoskedastic_variance</span></span>(<span>self, estimate='bias-reduced')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute an homoskedastic variance estimation of the model at last predicted points.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>estimate</code></strong> :&ensp;<code>string</code>, optional</dt>
+<dd>Estimate to use, 'naive' or 'bias-reduced'. The 'bias-reduced' estimate
+is recommended, see remark below. Default is 'bias-reduced'.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>var_predict</code></strong> :&ensp;<code>numpy array</code> of <code>shape (n_samples)</code></dt>
+<dd>Model variance estimation for y_predict.</dd>
+<dt><strong><code>noise_estimate</code></strong> :&ensp;<code>numpy.float</code></dt>
+<dd>Noise estimate.</dd>
+</dl>
+<h2 id="remarks">Remarks</h2>
+<p>The "naive" estimate was proposed in a proceeding of the 28th European
+Symposium on Artificial Neural Networks, Computational Intelligence and
+Machine Learning (ESANN 2020). This work motivated the Neurocomputing
+paper (see references below) in which the "bias-reduced" estimate was
+proposed. In particular, it was shown that the later as a lower bias and,
+therefore, was recommended. The "naive estimate" is still available for
+comparison and reproducibility purposes only.</p>
+<h2 id="references">References</h2>
+<p>F. Guignard, F. Amato and M. Kanevski.
+Uncertainty Quantification in Extreme Learning Machine:<br>
+Analytical Developments, Variance Estimates and Confidence Intervals,
+Neurocomputing 456 (2021) 436-449.</p>
+<p>F. Guignard, M. Laib and M. Kanevski.
+Model Variance for Extreme Learning Machine,
+ESANN (2020) 703-708.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def homoskedastic_variance(self, estimate=&#39;bias-reduced&#39;):
+    &#39;&#39;&#39;
+    Compute an homoskedastic variance estimation of the model at last predicted points.
+        
+    Parameters
+    ----------
+    estimate : string, optional
+        Estimate to use, &#39;naive&#39; or &#39;bias-reduced&#39;. The &#39;bias-reduced&#39; estimate 
+        is recommended, see remark below. Default is &#39;bias-reduced&#39;.
+
+    Returns
+    -------
+    var_predict : numpy array of shape (n_samples)
+        Model variance estimation for y_predict.
+    noise_estimate : numpy.float
+        Noise estimate.
+
+    Remarks
+    ------
+    The &#34;naive&#34; estimate was proposed in a proceeding of the 28th European 
+    Symposium on Artificial Neural Networks, Computational Intelligence and 
+    Machine Learning (ESANN 2020). This work motivated the Neurocomputing 
+    paper (see references below) in which the &#34;bias-reduced&#34; estimate was 
+    proposed. In particular, it was shown that the later as a lower bias and, 
+    therefore, was recommended. The &#34;naive estimate&#34; is still available for
+    comparison and reproducibility purposes only.
+        
+    References
+    ----------
+    F. Guignard, F. Amato and M. Kanevski. 
+    Uncertainty Quantification in Extreme Learning Machine:  
+    Analytical Developments, Variance Estimates and Confidence Intervals, 
+    Neurocomputing 456 (2021) 436-449.
+    
+    F. Guignard, M. Laib and M. Kanevski. 
+    Model Variance for Extreme Learning Machine,
+    ESANN (2020) 703-708.
+        
+    &#39;&#39;&#39; 
+    # print(&#34;ELMEnsembleRidgeCV homoskedastic_variance&#34;)                 
+    n_obs = self.X_.shape[0]
+    H_alphas, H_predict, residuals = self._collect()
+    Hs = self._collect_Hs()          
+    Hs = Hs.transpose(2,0,1)
+    alphas_opt = self._collect_alphas_opt()                                 ### change from non GCV case
+    alphas_opt = alphas_opt.reshape((alphas_opt.shape[0], 1))               ### change from non GCV case
+    alphas_opt = alphas_opt.repeat(self.n_neurons, axis = 1)                ### change from non GCV case
+    eigenHTHs = np.square(np.linalg.svd(Hs, full_matrices= False, compute_uv=False, hermitian=False))
+    eigenP = (eigenHTHs/(eigenHTHs + alphas_opt))                           ### change from non GCV case
+    eigenP2 = np.square(eigenP)
+    self.gamma_ = (2*eigenP - eigenP2).sum() / self.n_estimators
+    
+    ddof = n_obs - self.gamma_ 
+            
+    # Compute noise estimation
+    ARSS = self._AvgRSS(residuals)
+    noise = ARSS / ddof
+    
+    #Compute model variance induced by noise
+    muTmu = self._muTmu_estim(H_alphas, H_predict, estimate)
+    var1 = noise * muTmu
+    
+    # Compute model variance induced by the random weights
+    var2 = self.y_var_/self.n_estimators
+
+    var_predict = var1 + var2 
+        
+    return var_predict, noise </code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="UncELMe.elm_ensemble.ELMEnsembleRidge" href="#UncELMe.elm_ensemble.ELMEnsembleRidge">ELMEnsembleRidge</a></b></code>:
+<ul class="hlist">
+<li><code><a title="UncELMe.elm_ensemble.ELMEnsembleRidge.heteroskedastic_variance" href="#UncELMe.elm_ensemble.ELMEnsemble.heteroskedastic_variance">heteroskedastic_variance</a></code></li>
+<li><code><a title="UncELMe.elm_ensemble.ELMEnsembleRidge.predict" href="#UncELMe.elm_ensemble.ELMEnsemble.predict">predict</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="UncELMe" href="index.html">UncELMe</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="UncELMe.elm_ensemble.ELMEnsemble" href="#UncELMe.elm_ensemble.ELMEnsemble">ELMEnsemble</a></code></h4>
+<ul class="">
+<li><code><a title="UncELMe.elm_ensemble.ELMEnsemble.fit" href="#UncELMe.elm_ensemble.ELMEnsemble.fit">fit</a></code></li>
+<li><code><a title="UncELMe.elm_ensemble.ELMEnsemble.heteroskedastic_variance" href="#UncELMe.elm_ensemble.ELMEnsemble.heteroskedastic_variance">heteroskedastic_variance</a></code></li>
+<li><code><a title="UncELMe.elm_ensemble.ELMEnsemble.homoskedastic_variance" href="#UncELMe.elm_ensemble.ELMEnsemble.homoskedastic_variance">homoskedastic_variance</a></code></li>
+<li><code><a title="UncELMe.elm_ensemble.ELMEnsemble.predict" href="#UncELMe.elm_ensemble.ELMEnsemble.predict">predict</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="UncELMe.elm_ensemble.ELMEnsembleRidge" href="#UncELMe.elm_ensemble.ELMEnsembleRidge">ELMEnsembleRidge</a></code></h4>
+<ul class="">
+<li><code><a title="UncELMe.elm_ensemble.ELMEnsembleRidge.fit" href="#UncELMe.elm_ensemble.ELMEnsembleRidge.fit">fit</a></code></li>
+<li><code><a title="UncELMe.elm_ensemble.ELMEnsembleRidge.homoskedastic_variance" href="#UncELMe.elm_ensemble.ELMEnsembleRidge.homoskedastic_variance">homoskedastic_variance</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="UncELMe.elm_ensemble.ELMEnsembleRidgeCV" href="#UncELMe.elm_ensemble.ELMEnsembleRidgeCV">ELMEnsembleRidgeCV</a></code></h4>
+<ul class="">
+<li><code><a title="UncELMe.elm_ensemble.ELMEnsembleRidgeCV.fit" href="#UncELMe.elm_ensemble.ELMEnsembleRidgeCV.fit">fit</a></code></li>
+<li><code><a title="UncELMe.elm_ensemble.ELMEnsembleRidgeCV.homoskedastic_variance" href="#UncELMe.elm_ensemble.ELMEnsembleRidgeCV.homoskedastic_variance">homoskedastic_variance</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>
