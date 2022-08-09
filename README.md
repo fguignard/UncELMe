@@ -21,7 +21,7 @@ Examples with the ELMEnsemble class are availaible on GitHub Gist to help you ge
 
 Examples with ELMEnsembleRidge and ELMEnsembleRidgeCV classes will follow.
 
-The package can be installed via pip install command.
+The package can be installed via pip install command:
 
 ```pip install UncELMe```
 
