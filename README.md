@@ -1,4 +1,4 @@
-#UncELMe
+UncELMe
 =====================================
 
 Python package for Uncertainty quantification of Extreme Learning Machine ensemble.
