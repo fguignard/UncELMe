@@ -1,4 +1,4 @@
-UncELMe
+#UncELMe
 =====================================
 
 Python package for Uncertainty quantification of Extreme Learning Machine ensemble.
@@ -13,6 +13,20 @@ UncELMe contains :
 
 More theoretical and implementation details can be found in [Guignard et al.](https://doi.org/10.1016/j.neucom.2021.04.027). Please refer to this article if you are using the package.
 
+License : MIT
+
+## How to install this package
+
+The package can be installed via pip install command:
+
+```pip install UncELMe```
+
+## Documentation
+
+You can find the documentation of this repository [here](https://fguignard.github.io/UncELMe/). 
+
+## Examples
+
 Examples with the ELMEnsemble class are availaible on GitHub Gist to help you get started :
 
 * A [one-dimensional simulated case](https://gist.github.com/fguignard/e830899621ba79b2b6fb97e9f0d82ccb) using homoskedastic estimate.
@@ -21,9 +35,7 @@ Examples with the ELMEnsemble class are availaible on GitHub Gist to help you ge
 
 Examples with ELMEnsembleRidge and ELMEnsembleRidgeCV classes will follow.
 
-The package can be installed via pip install command:
 
-```pip install UncELMe```
 
-License : MIT
+
 
